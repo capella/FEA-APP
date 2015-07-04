@@ -1,5 +1,5 @@
 {
-  "name": "FEA-APP",
+  "name": "FEA",
   "app_id": "",
   "gulpStartupTasks": [
     "sass",
