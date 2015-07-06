@@ -1,4 +1,4 @@
-angular.module('starter.controllers', [])
+angular.module('fea_app.controllers', [])
 
 .controller('AppCtrl', function($scope, $ionicModal, $timeout) {
   
@@ -41,7 +41,13 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('PlaylistsCtrl', function($scope) {
+.controller('BandexCtrl', function($scope){
+
+  
+  
+})
+
+.controller('NoticiasCtrl', function($scope) {
   $scope.playlists = [
     { title: 'Reggae', id: 1 },
     { title: 'Chill', id: 2 },
@@ -52,7 +58,7 @@ angular.module('starter.controllers', [])
   ];
 })
 
-.controller('SearchCtrl', function($scope) {
+.controller('EventosCtrl', function($scope) {
  $scope.options = {
     defaultDate: new Date([2015, 06, 25]),
     minDate: new Date([2015, 06, 12]),
@@ -84,7 +90,7 @@ angular.module('starter.controllers', [])
   ];
 })
 
-.controller('PlaylistCtrl', function($scope, $stateParams) {
+.controller('NoticiaCtrl', function($scope, $stateParams) {
 })
 
 .controller('EventoDetailCtrl', function($scope, $stateParams, $ionicPlatform) {
