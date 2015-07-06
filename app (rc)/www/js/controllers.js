@@ -41,10 +41,36 @@ angular.module('fea_app.controllers', [])
   };
 })
 
-.controller('BandexCtrl', function($scope){
+.controller('BandexCtrl', function($scope, $filter){
+    $scope.bandex = 'quimica'; //bandex exibindo agora
 
-  
-  
+
+    $scope.listabandex = {};
+    $scope.listabandex.quimica = [];
+    $scope.listabandex.fisica = []; //listas de cardapios do bandex da semana
+
+    //ISSO VAI VIR DO SERVIDOR
+    var stub = {};
+    stub.arroz = "arroz e feijao";
+    stub.carne = "lombo ao molho ferrugem";
+    stub.salada = "salada de repolho";
+    stub.day = 2;
+    $scope.listabandex.fisica.push(stub);
+    $scope.listabandex.fisica.push(stub);
+    $scope.listabandex.fisica.push(stub);
+    $scope.listabandex.fisica.push(stub);
+    $scope.listabandex.quimica.push(stub);
+    $scope.listabandex.quimica.push(stub);
+    //FIM SERVIDOR
+
+    $scope.hoje = moment().format('E'); //dia de hoje, 1 eh segunda
+
+    //pegamos a lista que veio do server para filtrar
+
+$scope.getDayName = function(day){
+    return moment().isoWeekday(day).format("dddd");
+}
+
 })
 
 .controller('NoticiasCtrl', function($scope) {

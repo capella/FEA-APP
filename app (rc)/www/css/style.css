@@ -3,11 +3,11 @@ ion-content{
 }
 
 ion-item.item-ativo{
-	color: #112877;
+	color: #204aa1;
 }
 
 ion-item.item-ativo .item-content{
-	background-color: rgba(219, 195, 0, 0.36);
+	background-color: #e7de8f;
 }
 
 .cavcimg{
@@ -16,5 +16,49 @@ ion-item.item-ativo .item-content{
 }
 
 .bar.bar-main{
-	border-bottom: 3px solid #c9b300;
+	border-bottom: 3px solid #e7de8f;
+}
+.bar.bar-mustard{
+	background-color: #e7de8f;
+	border-bottom: 1px solid #e7de8f;
+}
+.bold{
+	font-weight: bold !important;
+}
+.blue{
+	color: #204aa1 !important;
+}
+
+/* BANDEX */
+
+.button-bar.top-switch{
+	width: 75%;
+	margin: 0 auto;
+	height: 34px;
+}
+.button-bar.top-switch .button{
+	border: 2px solid #2d5184;
+	color: #2d5184;
+	background-color: transparent;
+	font-size: 15px;
+	line-height: 30px;
+}
+.button-bar.top-switch .button:first-child, .button-bar.common-switch .button:first-child{
+	border-top-left-radius: 6px;
+	border-bottom-left-radius: 6px;
+}
+.button-bar.top-switch .button:last-child, .button-bar.common-switch .button:last-child{
+	border-top-right-radius: 6px;
+	border-bottom-right-radius: 6px;
+}
+.button-bar.top-switch .button.highlight{
+	background-color: #2d5184;
+	color: #FFFFFF;
+}
+.button-bar.top-switch .button.active, .button-bar.top-switch .button.activated{
+	box-shadow: none;
+}
+.item.today{
+	background-color: rgba(89, 86, 255, 0.19);
+	color: #2d5184;
 }

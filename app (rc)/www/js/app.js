@@ -4,9 +4,10 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('fea_app', ['ionic', 'fea_app.controllers','flexcalendar'])
+angular.module('fea_app', ['ionic', 'fea_app.controllers','fea_app.filters', 'flexcalendar'])
 
 .run(function($ionicPlatform) {
+  moment.locale("pt-br"); //seta o local pra brazil
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
