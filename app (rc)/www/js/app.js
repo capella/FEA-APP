@@ -4,7 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('fea_app', ['ionic', 'fea_app.controllers','fea_app.filters', 'flexcalendar'])
+angular.module('fea_app', ['ionic', 'fea_app.controllers','fea_app.filters', 'flexcalendar', 'ngTextTruncate'])
 
 .run(function($ionicPlatform) {
   moment.locale("pt-br"); //seta o local pra brazil

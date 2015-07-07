@@ -42,7 +42,7 @@ angular.module('fea_app.controllers', [])
 })
 
 .controller('BandexCtrl', function($scope, $filter){
-    $scope.bandex = 'quimica'; //bandex exibindo agora
+    $scope.bandex = 'fisica'; //bandex exibido default
 
 
     $scope.listabandex = {};
@@ -63,9 +63,7 @@ angular.module('fea_app.controllers', [])
     $scope.listabandex.quimica.push(stub);
     //FIM SERVIDOR
 
-    $scope.hoje = moment().format('E'); //dia de hoje, 1 eh segunda
-
-    //pegamos a lista que veio do server para filtrar
+    $scope.hoje = moment().format('E'); //dia de hoje, 1 eh segunda - 7 eh domingo
 
 $scope.getDayName = function(day){
     return moment().isoWeekday(day).format("dddd");
@@ -74,14 +72,15 @@ $scope.getDayName = function(day){
 })
 
 .controller('NoticiasCtrl', function($scope) {
-  $scope.playlists = [
-    { title: 'Reggae', id: 1 },
-    { title: 'Chill', id: 2 },
-    { title: 'Dubstep', id: 3 },
-    { title: 'Indie', id: 4 },
-    { title: 'Rap', id: 5 },
-    { title: 'Cowbell', id: 6 }
-  ];
+  $scope.listanoticias = [];
+  var noticia = {};
+  noticia.titulo = "Popularidade da gestão Haddad cai para -3.14%";
+  noticia.data = "22/06/2015";
+  noticia.img = "img/cavc pequeno transparente.png";
+  noticia.texto = "This is a \"Facebook\" styled Card. The header is created from a Thumbnail List item,"+
+        "the content is from a card-body consisting of an image and paragraph text. The footer"+
+        "consists of tabs, icons aligned left, within the card-footer.";
+  $scope.listanoticias.push(noticia);
 })
 
 .controller('EventosCtrl', function($scope) {
