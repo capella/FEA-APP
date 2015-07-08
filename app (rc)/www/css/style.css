@@ -62,3 +62,14 @@ ion-item.item-ativo .item-content{
 	background-color: rgba(89, 86, 255, 0.19);
 	color: #2d5184;
 }
+
+/* NOTICIAS */
+p.p-date{
+	font-style: italic;
+	color: #999;
+}
+
+.ngTruncateToggleText{
+	color: #2d5184;
+	font-weight: bold;
+}
