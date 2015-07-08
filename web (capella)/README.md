@@ -18,8 +18,10 @@ GET /app/bandejao.json
 
 ###### -Notícias
 ```
-GET /app/noticias.json
+GET /app/<start>/<number>/noticias.json
 ```
+- <start> a partir de qualnoticia vc quer receber.
+- <number> quantas notcias você quer receber.
 
 ### Vocabulário
 
