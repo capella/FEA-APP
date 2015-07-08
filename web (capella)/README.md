@@ -16,6 +16,11 @@ Essa função pode ser chamada sempre que o aplicativo iniciar. Insere se não h
 GET /app/bandejao.json
 ```
 
+###### -Notícias
+```
+GET /app/noticias.json
+```
+
 ### Vocabulário
 
 * uuid, número único do dispositivo
