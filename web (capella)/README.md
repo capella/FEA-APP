@@ -23,6 +23,11 @@ GET /app/<start>/<number>/noticias.json
 - ``<start>`` a partir de qualnoticia vc quer receber.
 - ``<number>`` quantas notcias você quer receber.
 
+###### -Eventos
+```
+GET /app/<mes>/<ano>/eventos.json
+```
+
 ### Vocabulário
 
 * uuid, número único do dispositivo
