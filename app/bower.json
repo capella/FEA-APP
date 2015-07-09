@@ -5,6 +5,7 @@
     "ionic": "driftyco/ionic-bower#1.0.1"
   },
   "dependencies": {
-    "flex-calendar": "*"
+    "flex-calendar": "*",
+    "moment": "~2.10.3"
   }
 }
