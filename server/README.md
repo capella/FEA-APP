@@ -38,5 +38,5 @@ GET /app/<mes>/<ano>/eventos.json
 Para rodar o servidor, basta executar os seguintes comamdos.
 ```
 bower install
-composer
+composer install
 ```
