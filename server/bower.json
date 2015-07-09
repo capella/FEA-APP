@@ -1,0 +1,11 @@
+{
+  "name": "FEA_APP",
+  "version": "1.0.0",
+  "authors": [
+    "capellaresumo <capellaresumo@gmail.com>"
+  ],
+  "description": "Sistema de web desenvolvido para o CAVC da FEA-USP.",
+  "dependencies": {
+    "admin-lte": "~2.2.0"
+  }
+}

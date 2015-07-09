@@ -1,0 +1,10 @@
+{% extends 'login_layout.twig' %}
+
+{% block title %}Erro{% endblock %}
+
+{% block content %}
+	<p>Desculpa, identificamos um erro no sistema.</p>
+	<br>
+	<div class="alert alert-danger">{{ message | nl2br }}</div>
+{% endblock %}
+

@@ -1,4 +1,5 @@
-### Paginas App
+### Central APP FEA CAVC
+===============
 
 O link para o nossa brincadeira será: fea.capella.pro
 Um bom programa para simular as requisições para MAC é o [Cocoa Rest Client](https://code.google.com/p/cocoa-rest-client/).
@@ -28,8 +29,16 @@ GET /app/<start>/<number>/noticias.json
 GET /app/<mes>/<ano>/eventos.json
 ```
 
-### Vocabulário
+#### Vocabulário
 
 * uuid, número único do dispositivo
 * sendcode, a string do indicador do dispositivo usado para enviar um alerta
 * system, o tipo do dispositivo (android/ios) em letras minusculas
+
+### Montando servidor
+
+Para rodar o servidor, basta executar os seguintes comamdos.
+```
+bower install
+composer
+```

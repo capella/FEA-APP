@@ -1,0 +1,12 @@
+.cancelBtn {
+    display: none;
+}
+.daterangepicker .ranges {
+    width: 100%;
+    padding-right: 8px;
+    text-align: center;
+    height: 30px;
+}
+.daterangepicker .calendar-time {
+    margin-top: -12px;
+}
