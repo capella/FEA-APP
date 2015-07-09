@@ -1,6 +1,4 @@
-### Central APP FEA CAVC
-===============
-
+## Central APP FEA CAVC
 O link para o nossa brincadeira será: fea.capella.pro
 Um bom programa para simular as requisições para MAC é o [Cocoa Rest Client](https://code.google.com/p/cocoa-rest-client/).
 
