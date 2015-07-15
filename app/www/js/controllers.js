@@ -71,16 +71,35 @@ $scope.getDayName = function(day){
 
 })
 
-.controller('NoticiasCtrl', function($scope) {
-  $scope.listanoticias = [];
-  var noticia = {};
-  noticia.titulo = "Popularidade da gestão Haddad cai para -3.14%";
-  noticia.data = "22/06/2015";
-  noticia.img = "img/cavc pequeno transparente.png";
-  noticia.texto = "This is a \"Facebook\" styled Card. The header is created from a Thumbnail List item,"+
-        "the content is from a card-body consisting of an image and paragraph text. The footer"+
-        "consists of tabs, icons aligned left, within the card-footer.";
-  $scope.listanoticias.push(noticia);
+.controller('NoticiasCtrl', function($scope, datafetcher, loadingService) {
+
+  $scope.page = 0;
+  $scope.returnedNothing = false;
+  $scope.fetchMore = function(page){
+    datafetcher.fetch({}, 'noticias', "app/"+($scope.page*10+1)+"/10/noticias.json").then(function(data){
+      $scope.page++;
+      angular.forEach(data.data, function(item){ //adicionamos os itens novos a lista e arrumamos a data
+        var data = moment(item.time);
+        item.time = data.format("DD/MM/YYYY");
+        $scope.listanoticias.push(item);
+      });
+      $scope.$broadcast("scroll.infiniteScrollComplete");
+      $scope.returnedNothing = data.data.length == 0; //verificamos se acabou pra desligar o infinite scroll
+      loadingService.finishWithSuccess($scope);
+    }, function(error){
+      loadingService.finishWithError($scope, error);
+    });
+  }
+
+  $scope.refreshPage = function(){
+    $scope.listanoticias = [];
+    loadingService.startLoading($scope);
+   // $scope.fetchMore();
+  };
+
+
+  $scope.refreshPage();
+
 })
 
 .controller('EventosCtrl', function($scope) {

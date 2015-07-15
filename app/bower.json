@@ -6,6 +6,7 @@
   },
   "dependencies": {
     "flex-calendar": "*",
-    "moment": "~2.10.3"
+    "moment": "~2.10.3",
+    "angular-local-storage": "~0.2.2"
   }
 }

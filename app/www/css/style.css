@@ -1,3 +1,8 @@
+.bar.bar-stable
+{
+	background-color: #204aa1;
+}
+
 ion-content{
 	background-color: #f0f0f0;
 }
@@ -13,6 +18,29 @@ ion-item.item-ativo .item-content{
 .cavcimg{
 	width: 100%;
 	opacity: 0.3;
+}
+
+.alert-bar{
+	width:100%;
+	text-align: center;
+	font-size: 15px;
+	padding: 10px;
+}
+
+.alert-danger{
+	background-color: #f2dede;
+	border: 1px solid #ebccd1;
+	color: #d72219;
+}
+
+.button.refresh-btn{
+	display: block;
+	margin: 30px auto;
+	height: 50px;
+}
+
+.button.refresh-btn span{
+	font-size: 50px;
 }
 
 .bar.bar-main{
@@ -73,3 +101,11 @@ p.p-date{
 	color: #2d5184;
 	font-weight: bold;
 }
+
+.card.list.noticia{
+	margin-left: 25px;
+	margin-right: 25px;
+}
+
+.no-first-p-margin p:first-child{
+	margin:0 !important;
