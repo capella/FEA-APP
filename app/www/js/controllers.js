@@ -76,7 +76,7 @@ $scope.getDayName = function(day){
   $scope.page = 0;
   $scope.returnedNothing = false;
   $scope.fetchMore = function(page){
-    datafetcher.fetch({}, 'noticias', "app/"+($scope.page*10+1)+"/10/noticias.json").then(function(data){
+    datafetcher.fetch({}, 'noticias', "app/"+($scope.page*10)+"/10/noticias.json").then(function(data){
       $scope.page++;
       angular.forEach(data.data, function(item){ //adicionamos os itens novos a lista e arrumamos a data
         var data = moment(item.time);
