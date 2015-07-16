@@ -42,21 +42,65 @@ angular.module('fea_app.controllers', [])
 })
 
 .controller('BandexCtrl', function($scope, $filter, datafetcher, loadingService){
-    $scope.bandex = 'fisica'; //bandex exibido default
-    $scope.listabandex = {};
-    $scope.listabandex.quimica = [];
-    $scope.listabandex.fisica = []; //listas de cardapios do bandex da semana
-    //ISSO VAI VIR DO SERVIDOR
-    loadingService.startLoading($scope);
-    datafetcher.fetch({}, "bandex", "app/bandejao.json").then(function(data){
-      console.debug(data);
-      loadingService.finishWithSuccess($scope);
-    }, function(error){
-      loadingService.finishWithError($scope, error);
-    });
-    //FIM SERVIDOR
 
-    $scope.hoje = moment().format('E'); //dia de hoje, 1 eh segunda - 7 eh domingo
+    $scope.refreshPage = function(){
+      $scope.bandex = 'central'; //bandex exibido default
+      $scope.listabandex = {};
+      $scope.listabandex.quimica = [];
+      $scope.listabandex.central = []; //listas de cardapios do bandex da semana
+      //ISSO VAI VIR DO SERVIDOR
+      loadingService.startLoading($scope);
+      datafetcher.fetch({}, "bandex", "app/bandejao.json").then(function(data){
+        //agora vem a pedreiragem
+        console.debug(data);
+        for(var bandex in $scope.listabandex)
+        {
+          if(data.data[bandex]['SEGUNDA-FEIRA']) {
+            data.data[bandex]['SEGUNDA-FEIRA'].day = 1;
+            $scope.listabandex[bandex].push(data.data[bandex]['SEGUNDA-FEIRA']);
+          }
+          if(data.data[bandex]['TER&Ccedil;A-FEIRA']) {
+            data.data[bandex]['TER&Ccedil;A-FEIRA'].day = 2;
+            $scope.listabandex[bandex].push(data.data[bandex]['TER&Ccedil;A-FEIRA']);
+          }
+          if(data.data[bandex]['TERÇA-FEIRA']) {
+            data.data[bandex]['TERÇA-FEIRA'].day = 2;
+            $scope.listabandex[bandex].push(data.data[bandex]['TERÇA-FEIRA']);
+          }
+          if(data.data[bandex]['QUARTA-FEIRA']) {
+            data.data[bandex]['QUARTA-FEIRA'].day = 3;
+            $scope.listabandex[bandex].push(data.data[bandex]['QUARTA-FEIRA']);
+          }
+          if(data.data[bandex]['QUINTA-FEIRA']) {
+            data.data[bandex]['QUINTA-FEIRA'].day = 4;
+            $scope.listabandex[bandex].push(data.data[bandex]['QUINTA-FEIRA']);
+          }
+          if(data.data[bandex]['SEXTA-FEIRA']) {
+            data.data[bandex]['SEXTA-FEIRA'].day = 5;
+            $scope.listabandex[bandex].push(data.data[bandex]['SEXTA-FEIRA']);
+          }
+          if(data.data[bandex]['S&Aacute;BADO']) {
+            data.data[bandex]['S&Aacute;BADO'].day = 6;
+            $scope.listabandex[bandex].push(data.data[bandex]['S&Aacute;BADO']);
+          }
+          if(data.data[bandex]['DOMINGO']) {
+            data.data[bandex]['DOMINGO'].day = 7;
+            $scope.listabandex[bandex].push(data.data[bandex]['DOMINGO']);
+          }
+        }
+        //fim pedreiragem
+        console.debug($scope.listabandex);
+        loadingService.finishWithSuccess($scope);
+      }, function(error){
+        loadingService.finishWithError($scope, error);
+      });
+      //FIM SERVIDOR
+
+      $scope.hoje = moment().format('E'); //dia de hoje, 1 eh segunda - 7 eh domingo
+    };
+
+
+    $scope.refreshPage();
 
 $scope.getDayName = function(day){
     return moment().isoWeekday(day).format("dddd");

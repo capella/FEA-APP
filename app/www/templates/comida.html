@@ -1,21 +1,33 @@
 <ion-view view-title="Bandejão">
   <ion-header-bar class="bar-subheader bar-mustard">
     <div class="button-bar top-switch">
-      <a class="button" ng-class="{'highlight' : bandex=='fisica'}" ng-click="bandex='fisica'">Física/Central</a>
+      <a class="button" ng-class="{'highlight' : bandex=='central'}" ng-click="bandex='central'">Física/Central</a>
       <a class="button" ng-class="{'highlight' : bandex=='quimica'}"  ng-click="bandex='quimica'">Química</a>
     </div>
   </ion-header-bar>
-  <ion-content ng-init="showError=false">
+  <ion-content ng-init="showError=false" ion-sticky>
     <div class="list">
-        <div ng-repeat="dia in listabandex[bandex] track by $index | filter:beforeToday">
-          <div class="item item-divider" style="text-align: center;" ng-class="{'today': dia.day==hoje}">
+        <div ng-repeat="dia in listabandex[bandex] | beforeToday">
+          <div class="item item-divider today" style="text-align: center;" ng-class="{'bold': dia.day==hoje}" ng-if="dia">
             {{getDayName(dia.day)}}{{dia.day==hoje ? " (Hoje)" : ""}}
           </div>
-          <div class="item" ng-repeat="prato in dia.lunch">
+          <div class="item item-divider" ng-if="dia.lunch">
+            Almoço
+          </div>
+          <div class="item" ng-repeat="prato in dia.lunch.comidas">
             {{prato}}
           </div>
-          <div class="item">
-            <span class="bold">Valor calórico: {{dia.lunch.kcal}}kcal</span>
+          <div class="item" ng-if="dia.lunch">
+            <span class="bold">Valor calórico: <span class="blue">{{dia.lunch.kcal}}</span> kcal</span>
+          </div>
+          <div class="item item-divider" ng-if="dia.dinner">
+            Jantar
+          </div>
+          <div class="item" ng-repeat="prato in dia.dinner.comidas">
+            {{prato}}
+          </div>
+          <div class="item" ng-if="dia.dinner">
+            <span class="bold">Valor calórico: <span class="blue">{{dia.dinner.kcal}}</span> kcal</span>
           </div>
         </div>
       </div>

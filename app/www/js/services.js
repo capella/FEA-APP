@@ -18,6 +18,7 @@ angular.module('fea_app.services', [])
 			$http.get(base_url+srUrl, data).then(function(data){
 
 				//sucesso. Cachear e retornar pro callback
+
 				cachenizer.write(data, stKey);
 				deferred.resolve(data);
 
@@ -62,6 +63,27 @@ angular.module('fea_app.services', [])
 		else
 		{
 			deferred.resolve(data);
+		}
+		return deferred.promise;
+	}
+})
+
+.service("postman", function($http, $q){
+	return({
+		post:post,
+	});
+
+	function post(data, url)
+	{
+		var base_url = "http://fea.capella.pro/";
+		var deferred = $q.defer();
+		var that = this;
+		//verificamos se tem conexão
+		if(navigator.onLine)
+		{
+			$http.post(base_url+url, data).then(function(data){
+				//coloca o que quiser aqui
+			});
 		}
 		return deferred.promise;
 	}
