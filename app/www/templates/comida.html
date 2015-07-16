@@ -5,34 +5,20 @@
       <a class="button" ng-class="{'highlight' : bandex=='quimica'}"  ng-click="bandex='quimica'">Química</a>
     </div>
   </ion-header-bar>
-  <ion-content>
+  <ion-content ng-init="showError=false">
     <div class="list">
         <div ng-repeat="dia in listabandex[bandex] track by $index | filter:beforeToday">
           <div class="item item-divider" style="text-align: center;" ng-class="{'today': dia.day==hoje}">
             {{getDayName(dia.day)}}{{dia.day==hoje ? " (Hoje)" : ""}}
           </div>
-          <div class="item">
-            {{dia.arroz}}
+          <div class="item" ng-repeat="prato in dia.lunch">
+            {{prato}}
           </div>
           <div class="item">
-            {{dia.carne}}
-          </div>
-          <div class="item">
-            {{dia.pvt}}
-          </div>
-          <div class="item">
-            {{dia.verdura}}
-          </div>
-          <div class="item">
-            {{dia.salada}}
-          </div>
-          <div class="item">
-            {{dia.sobremesa}}
-          </div>
-          <div class="item">
-            <span class="bold">Valor calórico: {{dia.kcal}}kcal</span>
+            <span class="bold">Valor calórico: {{dia.lunch.kcal}}kcal</span>
           </div>
         </div>
       </div>
   </ion-content>
+  <error-content>
 </ion-view>

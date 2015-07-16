@@ -57,6 +57,10 @@ ion-item.item-ativo .item-content{
 	color: #204aa1 !important;
 }
 
+.nomargin{
+	margin: 0 !important;
+}
+
 /* BANDEX */
 
 .button-bar.top-switch{
@@ -109,3 +113,26 @@ p.p-date{
 
 .no-first-p-margin p:first-child{
 	margin:0 !important;
+}
+
+/* EVENTOS */
+
+.flex-calendar div.month{
+	background-color: #e7de8f;
+	font-weight: bold;
+	color: #204aa1;
+}
+
+.flex-calendar div.week{
+	background-color: #c8c07c;
+}
+
+.flex-calendar .days .day.selected div.number{
+	background-color: #e7de8f;
+	color: #204aa1;
+	font-weight: bold;
+}
+
+.flex-calendar div.days .day.event:before {
+	background-color: #c8c07c;
+}

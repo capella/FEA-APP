@@ -41,26 +41,19 @@ angular.module('fea_app.controllers', [])
   };
 })
 
-.controller('BandexCtrl', function($scope, $filter){
+.controller('BandexCtrl', function($scope, $filter, datafetcher, loadingService){
     $scope.bandex = 'fisica'; //bandex exibido default
-
-
     $scope.listabandex = {};
     $scope.listabandex.quimica = [];
     $scope.listabandex.fisica = []; //listas de cardapios do bandex da semana
-
     //ISSO VAI VIR DO SERVIDOR
-    var stub = {};
-    stub.arroz = "arroz e feijao";
-    stub.carne = "lombo ao molho ferrugem";
-    stub.salada = "salada de repolho";
-    stub.day = 2;
-    $scope.listabandex.fisica.push(stub);
-    $scope.listabandex.fisica.push(stub);
-    $scope.listabandex.fisica.push(stub);
-    $scope.listabandex.fisica.push(stub);
-    $scope.listabandex.quimica.push(stub);
-    $scope.listabandex.quimica.push(stub);
+    loadingService.startLoading($scope);
+    datafetcher.fetch({}, "bandex", "app/bandejao.json").then(function(data){
+      console.debug(data);
+      loadingService.finishWithSuccess($scope);
+    }, function(error){
+      loadingService.finishWithError($scope, error);
+    });
     //FIM SERVIDOR
 
     $scope.hoje = moment().format('E'); //dia de hoje, 1 eh segunda - 7 eh domingo
@@ -76,7 +69,7 @@ $scope.getDayName = function(day){
   $scope.page = 0;
   $scope.returnedNothing = false;
   $scope.fetchMore = function(page){
-    datafetcher.fetch({}, 'noticias', "app/"+($scope.page*10)+"/10/noticias.json").then(function(data){
+    datafetcher.fetch({}, 'noticias_'+$scope.page, "app/"+($scope.page*10)+"/10/noticias.json").then(function(data){
       $scope.page++;
       angular.forEach(data.data, function(item){ //adicionamos os itens novos a lista e arrumamos a data
         var data = moment(item.time);
@@ -94,7 +87,6 @@ $scope.getDayName = function(day){
   $scope.refreshPage = function(){
     $scope.listanoticias = [];
     loadingService.startLoading($scope);
-   // $scope.fetchMore();
   };
 
 
@@ -102,65 +94,91 @@ $scope.getDayName = function(day){
 
 })
 
-.controller('EventosCtrl', function($scope) {
+.controller('EventosCtrl', function($scope, $state, datafetcher, loadingService, persistor) {
+ 
+  //mes e ano iniciais
+  $scope.refreshPage = function(){
+    $scope.month = moment().format("MM");
+    $scope.year = moment().format("YYYY");
+    $scope.fulldate = moment().format("DD [de] MMMM [de] YYYY");
+    $scope.todayevents = [];
+    $scope.getMonth();
+  }
+
+  $scope.getMonth = function(){
+    loadingService.startLoading($scope);
+    datafetcher.fetch({}, 'events_'+$scope.month+"_"+$scope.year, "app/"+$scope.month+"/"+$scope.year+"/eventos.json")
+      .then(function(data){
+        loadingService.finishWithSuccess($scope);
+        $scope.events = [];
+        angular.forEach(data.data, function(item){
+          item.date = moment(item.data);
+          $scope.events.push(item);
+        });
+        $scope.events = data.data;
+    }, function(error){
+      loadingService.finishWithError($scope, error);
+    });
+  }
+
+  $scope.viewEvent = function(evento){
+    persistor.set("evento", evento);
+    var ev = persistor.get("evento");
+    $state.go("app.evento");
+  }
+
  $scope.options = {
-    defaultDate: new Date([2015, 06, 25]),
-    minDate: new Date([2015, 06, 12]),
-    maxDate: new Date([2015, 12, 31]),
-    disabledDates: [
-      new Date([2015, 06, 30]),
-      new Date([2015, 07, 25]),
-      new Date([2015, 08, 13]),
-    ],
-    dayNamesLength: 1, // 1 for "M", 2 for "Mo", 3 for "Mon"; 9 will show full day names. Default is 1.
-    eventClick: function(date) {
-      console.log(date);
-    },
-    dateClick: function(date) {
-      console.log(date);
-    },
-    changeMonth: function(month) {
-      console.log(month);
-    },
-  };
-
-  $scope.events = [
-    {foo: 'bar', date: new Date([2015, 12, 31])},
-    {foo: 'bar', date: new Date([2015, 6, 4])},
-    {foo: 'bar', date: new Date([2015, 6, 14])},
-    {foo: 'bar', date: new Date([2015, 6, 25])},
-    {foo: 'bar', date: new Date([2015, 6, 19])},
-    {foo: 'bar', date: new Date([2015, 6, 20])}
-  ];
-})
-
-.controller('NoticiaCtrl', function($scope, $stateParams) {
-})
-
-.controller('EventoDetailCtrl', function($scope, $stateParams, $ionicPlatform) {
-
-    // Temos que esperar para carregar
-    $ionicPlatform.ready(function() {
-        try {
-            var mapOptions = {
-                zoom: 17,
-                center: new google.maps.LatLng(-23.5588402,-46.7291343),
-                disableDefaultUI: true
-            }
-
-            var mapa = new google.maps.Map(document.getElementById('map_canvas_z'), mapOptions);
-
-            var marker = new google.maps.Marker({
-                map: mapa,
-                position: mapOptions.center,
-                title: "Rua tal."
-            });
-        } catch (err) {
-            console.log(err);
+    minDate: new Date([2015, 01, 01]),
+    maxDate: new Date([2020, 12, 01]),
+    eventClick: function(event) {
+      $scope.fulldate = moment(event.date).format("DD [de] MMMM [de] YYYY");
+      $scope.todayevents = [];
+      //pesquisar todos os eventos e achar os desse dia (a merda da flex-calendar não suporta mais de um evento por dia)
+      angular.forEach($scope.events, function(item){
+        if(moment(item.date).isSame(moment(event.date), 'day'))
+        {
+          $scope.todayevents.push(item);
         }
       });
+    },
+    dateClick: function(date) {
+      $scope.fulldate = moment(date.date).format("DD [de] MMMM [de] YYYY");
+      $scope.todayevents = [];
+    },
+    changeMonth: function(month, year) {
+      $scope.month = (month.index+1)%12; //por algum motivo janeiro é 12 (?)
+      $scope.year = year;
+      $scope.getMonth();
+    }
+  };
 
+  $scope.refreshPage();
 
+})
+
+.controller('EventoDetailCtrl', function($scope, persistor) {
+        $scope.evento = persistor.get("evento", {});
+        //se não tiver setadas as coordenadas nem chama a API
+        if($scope.evento.lat)
+        {
+          try {
+              var mapOptions = {
+                  zoom: 17,
+                  center: new google.maps.LatLng($scope.evento.lat,$scope.evento.lon),
+                  disableDefaultUI: true
+              }
+
+              var mapa = new google.maps.Map(document.getElementById('map_canvas_z'), mapOptions);
+
+              var marker = new google.maps.Marker({
+                  map: mapa,
+                  position: mapOptions.center,
+                  title: "Local"
+              });
+          } catch (err) {
+              console.log(err);
+          }
+        }
 })
 
 .controller('BCtrl', function($scope, $stateParams, $ionicPlatform) {

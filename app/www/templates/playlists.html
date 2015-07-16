@@ -1,5 +1,5 @@
 <ion-view view-title="Notícias">
-  <ion-content>
+  <ion-content ng-init="showError=false">
   <div class="list card noticia" ng-repeat="noticia in listanoticias">
     <div class="item">
       <h2 class="bold blue">{{noticia.titulo}}</h2>

@@ -105,17 +105,7 @@ angular.module('fea_app', ['ionic', 'fea_app.controllers','fea_app.filters', 'fe
           controller: 'NoticiasCtrl'
         }
       }
-    })
-
-  .state('app.noticia', {
-    url: "/noticias/:noticiaId",
-    views: {
-      'menuContent': {
-        templateUrl: "templates/playlist.html",
-        controller: 'NoticiaCtrl'
-      }
-    }
-  });
+    });
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/noticias');
 });
