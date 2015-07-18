@@ -6,17 +6,16 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('fea_app', ['ionic', 'fea_app.controllers','fea_app.filters', 'fea_app.services' ,'flexcalendar', 'ngTextTruncate', 'LocalStorageModule', 'ion-sticky'])
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform, $timeout) {
   moment.locale("pt-br"); //seta o local pra brazil
-  $ionicPlatform.ready(function() {
-    // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
-    // for form inputs)
-    if (window.cordova && window.cordova.plugins.Keyboard) {
-      cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+  document.addEventListener("deviceready", function(){
+    //hora de fechar a splashscreen
+    if(navigator.splashscreen)
+    {
+        navigator.splashscreen.hide();    
     }
     if (window.StatusBar) {
-      // org.apache.cordova.statusbar required
-      StatusBar.styleDefault();
+      ionic.Platform.fullScreen(true, true);
     }
   });
 })

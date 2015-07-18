@@ -171,6 +171,7 @@ angular.module('fea_app.services', [])
 	function finishWithError(scope, error){
 		$ionicLoading.hide();
 		scope.showError = true;
+		alert(error);
 		switch(error)
 		{
 			case "internal-error":

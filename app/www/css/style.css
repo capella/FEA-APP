@@ -106,11 +106,6 @@ p.p-date{
 	font-weight: bold;
 }
 
-.card.list.noticia{
-	margin-left: 25px;
-	margin-right: 25px;
-}
-
 .no-first-p-margin p:first-child{
 	margin:0 !important;
 }
