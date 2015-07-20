@@ -1,19 +1,9 @@
-<ion-view view-title="Notícias">
-  <ion-content ng-init="showError=false">
-  <div class="list card noticia" ng-repeat="noticia in listanoticias">
-    <div class="item">
-      <h2 class="bold blue">{{noticia.titulo}}</h2>
-      <p class="p-date">{{noticia.time | date:'medium'}}</p>
-    </div>
-    <div class="item item-body">
-      <div class="col col-80 col-offset-10" ng-hide="noticia.imgurl == null">
-        <img class="full-image" ng-src="{{noticia.imgurl}}">
-      </div>
-      <div ng-bind-html="noticia.text" ng-class="{ 'no-first-p-margin' : noticia.imgurl == null}">
-      </div>
-    </div>
-  </div>
-  <ion-infinite-scroll ng-if="!returnedNothing" on-infinite="fetchMore()" distance="1%"></ion-infinite-scroll>
+<ion-view view-title="Playlists">
+  <ion-content>
+    <ion-list>
+      <ion-item ng-repeat="playlist in playlists" href="#/app/playlists/{{playlist.id}}">
+        {{playlist.title}}
+      </ion-item>
+    </ion-list>
   </ion-content>
-  <error-content>
-</ion-view> 
+</ion-view>

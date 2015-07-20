@@ -1,12 +1,4 @@
 {
-  "name": "FEA",
-  "app_id": "",
-  "gulpStartupTasks": [
-    "sass",
-    "watch"
-  ],
-  "watchPatterns": [
-    "www/**/*",
-    "!www/lib/**/*"
-  ]
+  "name": "fea",
+  "app_id": ""
 }

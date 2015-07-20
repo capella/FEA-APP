@@ -1,18 +1,21 @@
-.bar.bar-stable
-{
-	background-color: #204aa1;
+/* Empty. Add your own CSS if you like */
+.nomargin{
+	margin: 0 !important;
 }
-
-ion-content{
-	background-color: #f0f0f0;
+.scroll {
+    height: 100%;
 }
-
-ion-item.item-ativo{
-	color: #204aa1;
-}
-
-ion-item.item-ativo .item-content{
-	background-color: #e7de8f;
+ 
+.no {
+    color: #eee;
+    text-transform: none;
+    font-family: 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
+    font-size: 17px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: normal;
+    text-align: center;
+    margin-top: 50%;
 }
 
 .cavcimg{
@@ -20,114 +23,10 @@ ion-item.item-ativo .item-content{
 	opacity: 0.3;
 }
 
-.alert-bar{
-	width:100%;
-	text-align: center;
-	font-size: 15px;
-	padding: 10px;
-}
-
-.alert-danger{
-	background-color: #f2dede;
-	border: 1px solid #ebccd1;
-	color: #d72219;
-}
-
-.button.refresh-btn{
-	display: block;
-	margin: 30px auto;
-	height: 50px;
-}
-
-.button.refresh-btn span{
-	font-size: 50px;
-}
-
-.bar.bar-main{
-	border-bottom: 3px solid #e7de8f;
-}
-.bar.bar-mustard{
+ion-item.item-ativo .item-content{
 	background-color: #e7de8f;
-	border-bottom: 1px solid #e7de8f;
-}
-.bold{
-	font-weight: bold !important;
-}
-.blue{
-	color: #204aa1 !important;
 }
 
-.nomargin{
-	margin: 0 !important;
-}
-
-/* BANDEX */
-
-.button-bar.top-switch{
-	width: 75%;
-	margin: 0 auto;
-	height: 34px;
-}
-.button-bar.top-switch .button{
-	border: 2px solid #2d5184;
-	color: #2d5184;
-	background-color: transparent;
-	font-size: 15px;
-	line-height: 30px;
-}
-.button-bar.top-switch .button:first-child, .button-bar.common-switch .button:first-child{
-	border-top-left-radius: 6px;
-	border-bottom-left-radius: 6px;
-}
-.button-bar.top-switch .button:last-child, .button-bar.common-switch .button:last-child{
-	border-top-right-radius: 6px;
-	border-bottom-right-radius: 6px;
-}
-.button-bar.top-switch .button.highlight{
-	background-color: #2d5184;
-	color: #FFFFFF;
-}
-.button-bar.top-switch .button.active, .button-bar.top-switch .button.activated{
-	box-shadow: none;
-}
-.item.today{
-	background-color: rgba(89, 86, 255, 0.19);
-	color: #2d5184;
-}
-
-/* NOTICIAS */
-p.p-date{
-	font-style: italic;
-	color: #999;
-}
-
-.ngTruncateToggleText{
-	color: #2d5184;
-	font-weight: bold;
-}
-
-.no-first-p-margin p:first-child{
-	margin:0 !important;
-}
-
-/* EVENTOS */
-
-.flex-calendar div.month{
-	background-color: #e7de8f;
-	font-weight: bold;
-	color: #204aa1;
-}
-
-.flex-calendar div.week{
-	background-color: #c8c07c;
-}
-
-.flex-calendar .days .day.selected div.number{
-	background-color: #e7de8f;
-	color: #204aa1;
-	font-weight: bold;
-}
-
-.flex-calendar div.days .day.event:before {
-	background-color: #c8c07c;
+.platform-ios .bar.bar-main{
+	border-bottom: 3px solid #ffb835;
 }

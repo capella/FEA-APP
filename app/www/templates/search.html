@@ -1,24 +1,5 @@
-<ion-view view-title="Eventos">
-  <ion-content ng-init="showError=false">
-    <div class="wrapp">
-      <flex-calendar options="options" events="events"></flex-calendar>
-    </div>
-    <div class="list">
-
-        <div class="item item-divider">
-          {{fulldate}}
-        </div>
-
-        <a class="item  item-icon-right" ng-click="viewEvent(evento)" ng-repeat="evento in todayevents">
-          {{evento.title}}
-          <br>
-          <small>{{evento.date | date:'HH:mm'}}</small>
-          <i class="icon ion-chevron-right icon-accessory"></i>
-        </a>
-        <div class="item" ng-show="todayevents.length == 0">
-          <p>Não há eventos marcados para esta data.</p>
-        </div>
-      </div>
+<ion-view view-title="Search">
+  <ion-content>
+    <h1>Search</h1>
   </ion-content>
-  <error-content>
 </ion-view>

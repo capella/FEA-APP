@@ -1,9 +1,3 @@
-<!--
-  This template loads for the 'tab.friend-detail' state (app.js)
-  'friend' is a $scope variable created in the FriendsCtrl controller (controllers.js)
-  The FriendsCtrl pulls data from the Friends service (service.js)
-  The Friends service returns an array of friend data
--->
 <ion-view view-title="Evento">
   <ion-content lazy-scroll>
 
@@ -13,7 +7,6 @@
   </div>
 
   <div class="item item-body">
-    <img class="full-image" image-lazy-loader="lines" image-lazy-src="{{evento.image768}}" ng-if="evento.image768">
     <p class="nomargin" style="text-align: justify;">
       {{evento.text}}
     </p>
@@ -22,13 +15,12 @@
   <div class="item" ng-if="evento.endereco">
         <b>Local: </b>{{evento.endereco}}
   </div>
-
+<!--
   <div class="item" style="padding:0;" ng-if="evento.lat">
         <div style="width:100%;height:400px;" id="map_canvas_z"></div>
   </div>
-
-
-
+-->
+<div id="map" data-tap-disabled="true" style="width:100%;height:400px;"></div>
 
 
   </ion-content>
