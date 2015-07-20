@@ -4,8 +4,8 @@
     	<ion-list> <!-- é feio colocar uma lista dentro de outa, mas assim nao temos problas com o push -->
     		<div class="list card" ng-repeat="noticia in listanoticias">	
 	            <div class="item">
-	                <h3 class="bold blue">{{noticia.titulo}}</h3>
-	                <p><small>{{noticia.time | date:'dd/MM/yyyy'}}</small></p>
+	                <h3 class="bold blue">{{::noticia.titulo}}</h3>
+	                <p><small>{{::noticia.time | date:'dd/MM/yyyy'}}</small></p>
 	            </div>
 				<div class="item item-image" ng-hide="noticia.imgurl == null">
 					<img ng-src="{{noticia.imgurl}}">

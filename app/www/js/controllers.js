@@ -22,8 +22,12 @@ angular.module('app_fea.controllers', [])
       });
     });
   };
-  $ionicLoading.show();
-  $scope.doRefresh(); 
+
+  $scope.$on('$ionicView.enter', function(){
+    $ionicLoading.show();
+    $scope.doRefresh(); 
+  });
+
 })
 
 .controller('EventosCtrl', function($scope, Eventos, $ionicLoading) {
