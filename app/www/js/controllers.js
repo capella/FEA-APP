@@ -32,6 +32,20 @@ angular.module('app_fea.controllers', [])
 
 .controller('EventosCtrl', function($scope, Eventos, $ionicLoading) {
   // Dates can be passed as strings or Date objects
+  var MONTHS = [
+    'Janeiro',
+    'Fevereiro',
+    'Março',
+    'Abril',
+    'Maio',
+    'Junho',
+    'Julho',
+    'Agosto',
+    'Setembro',
+    'Outubro',
+    'Novembro',
+    'Dezembro'
+  ];
   $scope.events = [];
   $scope.eventos_dia = [];
   $scope.options = {
@@ -40,6 +54,7 @@ angular.module('app_fea.controllers', [])
     eventClick: function(date) {
       $scope.fulldate = date.date;
       $scope.eventos_dia = date.event;
+      $scope.mes = MONTHS[date.date.getMonth()];
     },
     dateClick: function(date) {
     },
@@ -65,6 +80,7 @@ angular.module('app_fea.controllers', [])
 
   get_date($scope.options.defaultDate.getMonth()+1, $scope.options.defaultDate.getFullYear());
   $scope.fulldate = $scope.options.defaultDate;
+  $scope.mes = MONTHS[$scope.options.defaultDate.getMonth()];
 
 })
 
