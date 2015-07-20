@@ -20,6 +20,9 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 $positive:                        #2d5184 !default;
 $energized:                       #ffb835 !default;
 
+ion-content
+	background-color: #f0f0f0
+
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
 

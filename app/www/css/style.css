@@ -30,3 +30,7 @@ ion-item.item-ativo .item-content{
 .platform-ios .bar.bar-main{
 	border-bottom: 3px solid #ffb835;
 }
+
+ion-content{
+    background-color: #f0f0f0;
+}
