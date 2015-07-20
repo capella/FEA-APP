@@ -101,6 +101,8 @@ angular.module('app_fea.controllers', [])
   $scope.fetchMore = function(){
     var send_data = {start: page*10, number: 10};
     Noticias_server.query(send_data,function(data){
+      if(page == 0)
+        $scope.listanoticias = [];
       page++;
       data.forEach(function(item){
         $scope.listanoticias.push(item);
@@ -121,7 +123,6 @@ angular.module('app_fea.controllers', [])
   }
 
   $scope.doRefresh = function(){
-    $scope.listanoticias = [];
     page = 0;
     $scope.returnedNothing = false;
     $scope.fetchMore();

@@ -6,7 +6,7 @@
 // 'app_fea.controllers' is found in controllers.js
 angular.module('app_fea', ['ionic', 'app_fea.controllers', 'app_fea.services', 'ngResource', 'flexcalendar', 'ngCordova'])
 
-.run(function($ionicPlatform, $cordovaPush, User_server, $cordovaDevice) {
+.run(function($ionicPlatform, $cordovaPush, User_server, $cordovaDevice, $rootScope) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -32,34 +32,41 @@ angular.module('app_fea', ['ionic', 'app_fea.controllers', 'app_fea.services', '
       StatusBar.styleLightContent();
     }
 
-    if($cordovaDevice.getPlatform()=="iOS"){
-      $cordovaPush.register(iosConfig).then(function(deviceToken) {
-        // Success -- send deviceToken to server, and store for future use
-        var send_data = {uuid: $cordovaDevice.getUUID(), sendcode: deviceToken, system: $cordovaDevice.getPlatform()};
-        var post = new User_server($scope.postData);
-        post.$save();
-      }, function(err) {
-        console.log("Registration error: " + err);
-      });
-    } else if($cordovaDevice.getPlatform()=="Android"){
-      $cordovaPush.register(androidConfig).then(function(result) {
-        // Success
-      }, function(err) {
-        console.log("Registration error: " + err);
-      });
-      $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
-        switch(notification.event) {
-          case 'registered':
-            if (notification.regid.length > 0 ) {
-              var send_data = {uuid: $cordovaDevice.getUUID(), sendcode: notification.regid, system: $cordovaDevice.getPlatform()};
-              var post = new User_server($scope.postData);
-              post.$save();         
-            }
-            break;
-        }
-      });
+    document.addEventListener("deviceready", function () {
+      if($cordovaDevice.getPlatform()=="iOS"){
+        $cordovaPush.register(iosConfig).then(function(deviceToken) {
+          // Success -- send deviceToken to server, and store for future use
+          var send_data = {uuid: $cordovaDevice.getUUID(), sendcode: deviceToken, system: $cordovaDevice.getPlatform()};
+          User_server.save(send_data, function(data){
+            console.log(data);
+          },function(data){
+            console.log(JSON.stringify(data));
+          }); 
+        }, function(err) {
+          console.log("Registration error: " + err);
+        });
+      } else if($cordovaDevice.getPlatform()=="Android"){
+        $cordovaPush.register(androidConfig).then(function(result) {
+        }, function(err) {
+          console.log("Registration error: " + err);
+        });
+        $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
+          switch(notification.event) {
+            case 'registered':
+              if (notification.regid.length > 0 ) {
+                var send_data = {uuid: $cordovaDevice.getUUID(), sendcode: notification.regid, system: $cordovaDevice.getPlatform()};
+                User_server.save(send_data, function(data){
+                  console.log(data);
+                },function(data){
+                  console.log(JSON.stringify(data));
+                });         
+              }
+              break;
+          }
+        });
 
-    }
+      }
+    });
 
   });
 })
