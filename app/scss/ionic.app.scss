@@ -20,9 +20,43 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 $positive:                        #2d5184 !default;
 $energized:                       #ffb835 !default;
 
-ion-content
-	background-color: #f0f0f0
 
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
 
+.nomargin {
+  margin: 0 !important;
+}
+
+.scroll {
+  height: 100%;
+}
+
+.no {
+  color: #eee;
+  text-transform: none;
+  font-family: 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
+  font-size: 17px;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: normal;
+  text-align: center;
+  margin-top: 50%;
+}
+
+.cavcimg {
+  width: 100%;
+  opacity: 0.3;
+}
+
+ion-item.item-ativo .item-content {
+  background-color: #e7de8f;
+}
+
+.platform-ios .bar.bar-main {
+  border-bottom: 3px solid $energized;
+}
+
+ion-content {
+  background-color: #f0f0f0;
+}
