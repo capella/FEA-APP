@@ -22,7 +22,7 @@ angular.module('app_fea.services', [])
 .factory('Eventos', function(Eventos_server) {
     var eventos = [];
     var set = false;
-    return {
+    var functions = {
         get: function(mes, ano, ok, erro) {
         	var send_data = {mes: mes, ano: ano};
 			Eventos_server.query(send_data, function(data) {
@@ -44,10 +44,15 @@ angular.module('app_fea.services', [])
         				return_data = value;
         			}
         		});
-        	}
+        	} else {
+                functions.get(function(){
+                    return functions.get();
+                });
+            }
         	return return_data;
 		}
     };
+    return functions;
 })
 
 ;

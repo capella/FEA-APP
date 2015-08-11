@@ -17,8 +17,4 @@
 	    </ion-list>
         <ion-infinite-scroll ng-if="!returnedNothing" on-infinite="fetchMore()" distance="1%"></ion-infinite-scroll>
     </ion-content>
-    <div ng-show="listanoticias.length == 0" class="no">
-    	<i class="icon ion-sad-outline" style="font-size:140px"></i>
-    	<p>Não achamos as notícias.</p>
-   	</div>
 </ion-view>
