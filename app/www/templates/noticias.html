@@ -1,5 +1,5 @@
 <ion-view view-title="Notícias">
-    <ion-content ng-init="showError=false" >
+    <ion-content ng-init="showError=false" ng-show="listanoticias.length != 0" >
     	<ion-refresher pulling-text="Deslize para atualizar..." on-refresh="doRefresh()"> </ion-refresher>
     	<ion-list> <!-- é feio colocar uma lista dentro de outa, mas assim nao temos problas com o push -->
     		<div class="list card" ng-repeat="noticia in listanoticias">	
@@ -17,4 +17,8 @@
 	    </ion-list>
         <ion-infinite-scroll ng-if="!returnedNothing" on-infinite="fetchMore()" distance="1%"></ion-infinite-scroll>
     </ion-content>
+    <div ng-show="listanoticias.length == 0" class="no">
+    	<i class="icon ion-wifi" style="font-size:140px"></i>
+    	<p>Não achamos as notícias.</p>
+   	</div>
 </ion-view>

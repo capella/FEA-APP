@@ -5,7 +5,7 @@
     	<div class="item item-divider" style="text-align: center;">
         	{{fulldate | date:'dd'}} de {{mes}} de {{fulldate | date:'yyyy'}}
         </div>
-		<a class="item  item-icon-right" href="#/app/evento/{{evento.id}}" ng-repeat="evento in eventos_dia">
+		<a class="item  item-icon-right" href="#/app/evento/{{evento.id}}/{{fulldate | date:'MM'}}/{{fulldate | date:'yyyy'}}" ng-repeat="evento in eventos_dia">
 			{{evento.title}}
 			<br>
 			<small>{{evento.date | date:'HH:mm'}}</small>

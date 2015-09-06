@@ -21,7 +21,8 @@ angular.module('app_fea.services', [])
 
 .factory('Eventos', function(Eventos_server) {
     var eventos = [];
-    var set = false;
+    var set_ano = -1;
+    var set_mes = -1;
     var functions = {
         get: function(mes, ano, ok, erro) {
         	var send_data = {mes: mes, ano: ano};
@@ -30,26 +31,27 @@ angular.module('app_fea.services', [])
 				eventos.forEach(function(element){
 					element.date = new Date(element.data2*1000);
 				});
-				set = true;
+                set_ano = ano;
+				set_mes = mes;
 				ok(data);
 			}, function(error) {
 				erro(error)
 			});  
 		},
-        get_id: function(id) {
+        get_id: function(id, mes, ano, ok, erro) {
         	var return_data;
-        	if(set && id){
+        	if (set_ano == ano && set_mes == mes && id){
         		eventos.forEach(function(value, key) {
         			if(value.id == id){
-        				return_data = value;
+        				ok(value);
         			}
         		});
         	} else {
-                functions.get(function(){
-                    return functions.get();
-                });
+                functions.get(mes, ano, function(){
+                    console.log(44);
+                    functions.get_id(id, mes, ano, ok, erro);
+                }, erro);
             }
-        	return return_data;
 		}
     };
     return functions;

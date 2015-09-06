@@ -45,6 +45,15 @@ angular.module('app_fea', ['ionic', 'app_fea.controllers', 'app_fea.services', '
         }, function(err) {
           console.log("Registration error: " + err);
         });
+        $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
+          if (notification.badge) {
+            $cordovaPush.setBadgeNumber(notification.badge).then(function(result) {
+              console.log(JSON.stringify(result));
+            }, function(err) {
+              // An error occurred. Show a message to the user
+            });
+          }
+        });
       } else if($cordovaDevice.getPlatform()=="Android"){
         $cordovaPush.register(androidConfig).then(function(result) {
         }, function(err) {
@@ -61,6 +70,10 @@ angular.module('app_fea', ['ionic', 'app_fea.controllers', 'app_fea.services', '
                   console.log(JSON.stringify(data));
                 });         
               }
+              break;
+            case 'message':
+              console.log(JSON.stringify(notification));
+              $state.go(notification.url);
               break;
           }
         });
@@ -102,7 +115,7 @@ angular.module('app_fea', ['ionic', 'app_fea.controllers', 'app_fea.services', '
   })
 
   .state('app.evento', {
-    url: '/evento/:id',
+    url: '/evento/:id/:mes/:ano',
     views: {
       'menuContent': {
         templateUrl: 'templates/evento_id.html',

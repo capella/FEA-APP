@@ -85,31 +85,33 @@ angular.module('app_fea.controllers', [])
 })
 
 .controller('EventoCtrl', function($scope, $stateParams, Eventos) {
-  $scope.evento = Eventos.get_id($stateParams.id);
+  Eventos.get_id($stateParams.id, $stateParams.mes, $stateParams.ano, function(data){
+    $scope.evento = data;
 
-  if($scope.evento.lat)
-  {
-    try {
-        var mapOptions = {
-            center: new google.maps.LatLng($scope.evento.lat,$scope.evento.lon),
-            zoom: 17,
-            mapTypeId: google.maps.MapTypeId.ROADMAP,
-            disableDefaultUI: true
-        };
- 
-        var map = new google.maps.Map(document.getElementById("map"), mapOptions);
- 
-        var marker = new google.maps.Marker({
-            map: map,
-            position: mapOptions.center,
-            title: $scope.evento.local
-        });
-        $scope.map = map;
+    if($scope.evento.lat)
+    {
+      try {
+          var mapOptions = {
+              center: new google.maps.LatLng($scope.evento.lat,$scope.evento.lon),
+              zoom: 17,
+              mapTypeId: google.maps.MapTypeId.ROADMAP,
+              disableDefaultUI: true
+          };
+   
+          var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+   
+          var marker = new google.maps.Marker({
+              map: map,
+              position: mapOptions.center,
+              title: $scope.evento.local
+          });
+          $scope.map = map;
 
-    } catch (err) {
-        console.log(err);
+      } catch (err) {
+          console.log(err);
+      }
     }
-  }
+  });
 })
 
 .controller('NoticiasCtrl', function($scope, Noticias_server, $ionicLoading) {
