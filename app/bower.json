@@ -5,10 +5,10 @@
     "ionic": "driftyco/ionic-bower#1.0.1"
   },
   "dependencies": {
-    "ionic": "~1.0.1",
     "angular-resource": "~1.4.3",
-    "ngCordova": "~0.1.17-alpha",
-    "flex-calendar": "https://github.com/capellaresumo/flex-calendar.git#fixing-safari",
-    "maps": "https://maps.googleapis.com/maps/api/js?key=AIzaSyAlgGWbnjwh7zivXzxeQ-g0MlXd_BRd-ow"
+    "flex-calendar": "*",
+    "ionic": "~1.0.1",
+    "maps": "https://maps.googleapis.com/maps/api/js?key=AIzaSyAlgGWbnjwh7zivXzxeQ-g0MlXd_BRd-ow",
+    "ngCordova": "~0.1.17-alpha"
   }
 }

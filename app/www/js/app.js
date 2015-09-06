@@ -4,7 +4,7 @@
 // 'app_fea' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'app_fea.controllers' is found in controllers.js
-angular.module('app_fea', ['ionic', 'app_fea.controllers', 'app_fea.services', 'ngResource', 'flexcalendar', 'ngCordova'])
+angular.module('app_fea', ['ionic', 'app_fea.controllers', 'app_fea.services', 'ngResource', 'pascalprecht.translate','flexcalendar', 'ngCordova'])
 
 .run(function($ionicPlatform, $cordovaPush, User_server, $cordovaDevice, $rootScope) {
   $ionicPlatform.ready(function() {
@@ -153,4 +153,31 @@ angular.module('app_fea', ['ionic', 'app_fea.controllers', 'app_fea.services', '
   })
 
   $urlRouterProvider.otherwise('/app/noticias');
+})
+
+.config(function ($translateProvider) {
+  $translateProvider.translations('pt', {
+      JANUARY: 'Janeiro',
+      FEBRUARY: 'Fevereiro',
+      MARCH: 'Março',
+      APRIL: 'Abril',
+      MAI: 'Maio',
+      JUNE: 'Junho',
+      JULY: 'Julho',
+      AUGUST: 'Agosto',
+      SEPTEMBER: 'Setembro',
+      OCTOBER: 'Outubro',
+      NOVEMBER: 'Novembro',
+      DECEMBER: 'Dezembro',
+
+      SUNDAY: 'Domingo',
+      MONDAY: 'Segunda',
+      TUESDAY: 'Terça',
+      WEDNESDAY: 'Quarta',
+      THURSDAY: 'Quinta',
+      FRIDAY: 'Sexta',
+      SATURDAY: 'Sábado'
+  });
+  $translateProvider.preferredLanguage('pt');
+  $translateProvider.useSanitizeValueStrategy('escape');
 });

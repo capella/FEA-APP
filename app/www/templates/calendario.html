@@ -1,9 +1,9 @@
 <ion-view view-title="Eventos">
   <ion-content>
     <flex-calendar options="options" events="events"></flex-calendar>
-    <div class="list">
+    <div class="list" ng-show="fulldate">
     	<div class="item item-divider" style="text-align: center;">
-        	{{fulldate | date:'dd'}} de {{mes}} de {{fulldate | date:'yyyy'}}
+        	{{fulldate | date:'d'}} de {{fulldate | date:'MMMM' | uppercase | translate}} de {{fulldate | date:'yyyy'}}
         </div>
 		<a class="item  item-icon-right" href="#/app/evento/{{evento.id}}/{{fulldate | date:'MM'}}/{{fulldate | date:'yyyy'}}" ng-repeat="evento in eventos_dia">
 			{{evento.title}}
@@ -17,4 +17,3 @@
     </div>
   </ion-content>
 </ion-view>
-
