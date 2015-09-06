@@ -1,5 +1,5 @@
 {
- "name": "FeaApp",
+  "name": "FeaApp",
   "version": "0.0.2",
   "description": "Aplicativo do CAVC.",
   "repository": {
@@ -24,7 +24,9 @@
     "cordova-plugin-console",
     "cordova-plugin-whitelist",
     "cordova-plugin-splashscreen",
-    "com.ionic.keyboard"
+    "com.ionic.keyboard",
+    "com.phonegap.plugins.PushPlugin",
+    "cordova-plugin-statusbar"
   ],
   "cordovaPlatforms": [
     "ios",

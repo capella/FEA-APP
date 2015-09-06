@@ -15,4 +15,7 @@ ionic plugin add cordova-plugin-splashscreen
 ionic plugin add cordova-plugin-statusbar
 ionic plugin add cordova-plugin-whitelist
 
+Observação: Na hora de usar o comando bower install, escolher
+a versão do angular#1.3.13
+
 ```
