@@ -142,6 +142,8 @@ angular.module('app_fea.controllers', [])
     });
   }
 
+
+
   $scope.doRefresh = function(){
     page = 0;
     $scope.returnedNothing = false;
@@ -151,6 +153,25 @@ angular.module('app_fea.controllers', [])
   $scope.doRefresh();
   $ionicLoading.show();
 
+})
+
+.controller('RotasCtrl', function($scope){
+
+      try {
+        var mapOptions = {
+              center: new google.maps.LatLng(-23.55883742073552, -46.72914826248166),
+              zoom: 17,
+              mapTypeId: google.maps.MapTypeId.ROADMAP,
+              disableDefaultUI: true
+            };
+
+            var map = new google.maps.Map(document.getElementById("map2"), mapOptions);
+
+            $scope.map = map;
+
+    } catch (err) {
+        console.log(err);
+    }
 })
 
 ;

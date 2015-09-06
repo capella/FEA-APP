@@ -130,5 +130,14 @@ angular.module('app_fea', ['ionic', 'app_fea.controllers', 'app_fea.services', '
     }
   })
 
+  .state('app.rotas', {
+    url: '/rotas',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/rotas.html'
+      }
+    }
+  })
+
   $urlRouterProvider.otherwise('/app/noticias');
 });
