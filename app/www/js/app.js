@@ -21,16 +21,16 @@ angular.module('app_fea', ['ionic', 'app_fea.controllers', 'app_fea.services', '
 
       push.on('registration', function(data) {
           var send_data = {uuid: $cordovaDevice.getUUID(), sendcode: data.registrationId, system: $cordovaDevice.getPlatform()};
-          console.log(JSON.stringify(data));
+          User_server.save(send_data, function(data2){
+            console.log(JSON.stringify(data2));
+          },function(data2){
+            console.log(JSON.stringify(data2));
+          });
       });
 
       push.on('notification', function(data) {
           console.log("notification event");
-          console.log(JSON.stringify(data));
-      });
-
-      push.on('error', function(e) {
-          console.log("push error");
+          window.location.href="#"+data.additionalData.additionalData;
       });
     });
    
@@ -45,6 +45,7 @@ angular.module('app_fea', ['ionic', 'app_fea.controllers', 'app_fea.services', '
       StatusBar.styleLightContent();
     }
 
+  
   });
 })
 
