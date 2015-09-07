@@ -25,8 +25,8 @@
     "cordova-plugin-whitelist",
     "cordova-plugin-splashscreen",
     "com.ionic.keyboard",
-    "com.phonegap.plugins.PushPlugin",
-    "cordova-plugin-statusbar"
+    "cordova-plugin-statusbar",
+    "phonegap-plugin-push"
   ],
   "cordovaPlatforms": [
     "ios",

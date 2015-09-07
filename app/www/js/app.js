@@ -10,17 +10,30 @@ angular.module('app_fea', ['ionic', 'app_fea.controllers', 'app_fea.services', '
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
+    document.addEventListener("deviceready", function () {
+      var push = PushNotification.init({
+          "android": {
+              "senderID": "950391589235"
+          },
+          "ios": {}, 
+          "windows": {} 
+      });
 
-    var iosConfig = {
-      "badge": true,
-      "sound": true,
-      "alert": true,
-    };
+      push.on('registration', function(data) {
+          var send_data = {uuid: $cordovaDevice.getUUID(), sendcode: data.registrationId, system: $cordovaDevice.getPlatform()};
+          console.log(JSON.stringify(data));
+      });
 
-    var androidConfig = {
-      "senderID": "950391589235",
-    };
+      push.on('notification', function(data) {
+          console.log("notification event");
+          console.log(JSON.stringify(data));
+      });
 
+      push.on('error', function(e) {
+          console.log("push error");
+      });
+    });
+   
     if (window.cordova && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
       cordova.plugins.Keyboard.disableScroll(true);
@@ -31,55 +44,6 @@ angular.module('app_fea', ['ionic', 'app_fea.controllers', 'app_fea.services', '
       StatusBar.styleDefault();
       StatusBar.styleLightContent();
     }
-
-    document.addEventListener("deviceready", function () {
-      if($cordovaDevice.getPlatform()=="iOS"){
-        $cordovaPush.register(iosConfig).then(function(deviceToken) {
-          // Success -- send deviceToken to server, and store for future use
-          var send_data = {uuid: $cordovaDevice.getUUID(), sendcode: deviceToken, system: $cordovaDevice.getPlatform()};
-          User_server.save(send_data, function(data){
-            console.log(data);
-          },function(data){
-            console.log(JSON.stringify(data));
-          }); 
-        }, function(err) {
-          console.log("Registration error: " + err);
-        });
-        $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
-          if (notification.badge) {
-            $cordovaPush.setBadgeNumber(notification.badge).then(function(result) {
-              console.log(JSON.stringify(result));
-            }, function(err) {
-              // An error occurred. Show a message to the user
-            });
-          }
-        });
-      } else if($cordovaDevice.getPlatform()=="Android"){
-        $cordovaPush.register(androidConfig).then(function(result) {
-        }, function(err) {
-          console.log("Registration error: " + err);
-        });
-        $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
-          switch(notification.event) {
-            case 'registered':
-              if (notification.regid.length > 0 ) {
-                var send_data = {uuid: $cordovaDevice.getUUID(), sendcode: notification.regid, system: $cordovaDevice.getPlatform()};
-                User_server.save(send_data, function(data){
-                  console.log(data);
-                },function(data){
-                  console.log(JSON.stringify(data));
-                });         
-              }
-              break;
-            case 'message':
-              console.log(JSON.stringify(notification));
-              $state.go(notification.url);
-              break;
-          }
-        });
-
-      }
-    });
 
   });
 })
