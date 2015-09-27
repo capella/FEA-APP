@@ -1,13 +1,7 @@
 <ion-view view-title="Rotas">
-
-<ion-tabs class="tabs-top">
-
-<ion-tab title="Origem">
-<ion-nav-bar class="bar-positive"></ion-nav-bar>
 <ion-content>
 <ion-list>
 <div class="list">
-
 	<div class="item item-select">
 		<div class="input-label">
 			Origem
@@ -256,7 +250,7 @@
 		<div class="input-label">
 			Meio de transporte
 		</div>
-		<select id="mode" onchange="calcRoute();">
+		<select id="mode">
 			<option value="DRIVING">Carro</option>
 			<option value="WALKING">A pé</option>
 			<option value="BICYCLING">Bicicleta</option>
@@ -266,23 +260,7 @@
 
 </div> 
 </ion-list> 
+<div id="map" style="float:left;width:70%; height:100%"></div>
+<div id="directionsPanel" style="float:right;width:30%;height 100%"></div>
 </ion-content>
-</ion-tab>
-
-
-
-<ion-tab title="Mapa">
-<ion-content>
-<div id="map2" data-tap-disabled="true" style="height:100%;" ng-controller="RotasCtrl"></div>
-</ion-content>
-</ion-tab>
-
-<ion-tab title="Rotas">
-<ion-nav-bar class="bar-positive"></ion-nav-bar>
-<ion-content>
-
-</ion-content>
-</ion-tab>
-
-</ion-tabs>  
 </ion-view>

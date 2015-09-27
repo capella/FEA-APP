@@ -142,22 +142,41 @@ angular.module('app_fea.controllers', [])
 })
 
 .controller('RotasCtrl', function($scope){
+  var directionsDisplay;
+  var directionsService = new google.maps.DirectionsService();
+  var map;
 
-      try {
-        var mapOptions = {
-              center: new google.maps.LatLng(-23.55883742073552, -46.72914826248166),
-              zoom: 17,
-              mapTypeId: google.maps.MapTypeId.ROADMAP,
-              disableDefaultUI: true
-            };
+  directionsDisplay = new google.maps.DirectionsRenderer();
+    var mapOptions = {
+      center: new google.maps.LatLng(-23.55883742073552, -46.72914826248166),
+      zoom: 17,
+      mapTypeId: google.maps.MapTypeId.ROADMAP,
+      disableDefaultUI: true
+    };
+    map = new google.maps.Map(document.getElementById("map"), mapOptions);
+    directionsDisplay.setMap(map);
+    directionsDisplay.setPanel(document.getElementById("directionsPanel"));
 
-            var map = new google.maps.Map(document.getElementById("map2"), mapOptions);
+    var onChangeHandler = function() {
+      calculateAndDisplayRoute(directionsService, directionsDisplay);
+    };
+    document.getElementById('start').addEventListener('change', onChangeHandler);
+    document.getElementById('end').addEventListener('change', onChangeHandler);
+    document.getElementById('mode').addEventListener('change', onChangeHandler);
 
-            $scope.map = map;
-
-    } catch (err) {
-        console.log(err);
-    }
+  function calculateAndDisplayRoute(directionsService, directionsDisplay) {
+    directionsService.route({
+      origin: document.getElementById('start').value,
+      destination: document.getElementById('end').value,
+      travelMode: document.getElementById('mode').value,
+    }, function(response, status) {
+      if (status === google.maps.DirectionsStatus.OK) {
+        directionsDisplay.setDirections(response);
+      } else {
+        window.alert('Directions request failed due to ' + status);
+      }
+    });
+  }
 })
 
 ;

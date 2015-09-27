@@ -112,7 +112,8 @@ angular.module('app_fea', ['ionic', 'app_fea.controllers', 'app_fea.services', '
     url: '/rotas',
     views: {
       'menuContent': {
-        templateUrl: 'templates/rotas.html'
+        templateUrl: 'templates/rotas.html',
+        controller: 'RotasCtrl'
       }
     }
   })

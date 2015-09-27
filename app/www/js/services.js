@@ -1,5 +1,9 @@
 var base_url = "http://fea.capella.pro/";
 
+var sptrans_url = "http://api.olhovivo.sptrans.com.br/v0";
+
+var token = "ace4f930d777f95f3496c7156543b2cbc95b8cb7e10ad86d7536a0f675bb580c";
+
 angular.module('app_fea.services', [])
 
 .factory('Cardapio_server', function($resource) {
@@ -16,6 +20,18 @@ angular.module('app_fea.services', [])
 
 .factory('Eventos_server', function($resource) {
   return $resource(base_url+'app/:mes/:ano/eventos.json');
+})
+
+.factory('Post_login', function($resource) {
+  return $resource(sptrans_url+'/Login/Autenticar?token='+token);
+})
+
+.factory('Get_8012', function($resource) {
+  return $resource(sptrans_url+'/Posicao?codigoLinha=54809');
+})
+
+.factory('Get_8022', function($resource) {
+  return $resource(sptrans_url+'/Posicao?codigoLinha=56663');
 })
 
 
