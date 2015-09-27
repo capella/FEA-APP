@@ -108,6 +108,16 @@ angular.module('app_fea', ['ionic', 'app_fea.controllers', 'app_fea.services', '
     }
   })
 
+  .state('app.circular', {
+    url: '/circular',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/circular.html',
+        controller: 'CircularCtrl'
+      }
+    }
+  })
+
   .state('app.rotas', {
     url: '/rotas',
     views: {

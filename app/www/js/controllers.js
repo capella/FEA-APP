@@ -30,6 +30,47 @@ angular.module('app_fea.controllers', [])
 
 })
 
+.controller('CircularCtrl', function($scope, Post_login, Get_linha) {
+  try {
+    var mapOptions = {
+      center: new google.maps.LatLng(-23.55883742073552, -46.72914826248166),
+      zoom: 17,
+      mapTypeId: google.maps.MapTypeId.ROADMAP,
+      disableDefaultUI: true
+    };
+
+    var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+
+    $scope.map = map;
+
+  } catch (err) {
+    console.log(err);
+  }
+
+  if(Post_login.query()) {
+    carregarMarkers();
+  }
+
+  function carregarMarkers() {
+    if(Post_login.query()){
+      Get_linha.query({code: document.getElementById('linha').value}, function(data){
+        data.vs.forEach(function(item){
+          clearMarkers();
+          var marker = new google.maps.Marker({
+            map: $scope.map,
+            position: new google.maps.LatLng(item.py, item.px),
+            title: document.getElementById('linha').name
+          });
+        });
+      });
+    }else{
+      console.log(Post_login.query());
+    }
+  }
+
+  document.getElementById('linha').addEventListener('change', carregarMarkers);
+})
+
 .controller('EventosCtrl', function($scope, Eventos, $ionicLoading) {
 
   $scope.events = [];

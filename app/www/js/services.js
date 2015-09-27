@@ -26,14 +26,13 @@ angular.module('app_fea.services', [])
   return $resource(sptrans_url+'/Login/Autenticar?token='+token);
 })
 
-.factory('Get_8012', function($resource) {
-  return $resource(sptrans_url+'/Posicao?codigoLinha=54809');
+.factory('Get_linha', function($resource) {
+  return $resource(sptrans_url+'/Posicao?codigoLinha=:code');
 })
 
-.factory('Get_8022', function($resource) {
-  return $resource(sptrans_url+'/Posicao?codigoLinha=56663');
-})
+/*54809 8012
 
+56663 8022*/
 
 .factory('Eventos', function(Eventos_server) {
     var eventos = [];
