@@ -31,45 +31,58 @@ angular.module('app_fea.controllers', [])
 })
 
 .controller('CircularCtrl', function($scope, Post_login, Get_linha) {
+  var aut = false;
   try {
     var mapOptions = {
-      center: new google.maps.LatLng(-23.55883742073552, -46.72914826248166),
-      zoom: 17,
+      center: new google.maps.LatLng(-23.5588, -46.7291),
+      zoom: 14,
       mapTypeId: google.maps.MapTypeId.ROADMAP,
       disableDefaultUI: true
     };
 
     var map = new google.maps.Map(document.getElementById("map"), mapOptions);
-
     $scope.map = map;
+    carregarMarkers(2023);
 
   } catch (err) {
     console.log(err);
   }
 
-  if(Post_login.query()) {
-    carregarMarkers();
+  function carregarMarkers() {
+    Post_login.save({}, function (b) {
+      onibus(2023);
+      onibus(2085);
+    });
   }
 
-  function carregarMarkers() {
-    if(Post_login.query()){
-      Get_linha.query({code: document.getElementById('linha').value}, function(data){
-        data.vs.forEach(function(item){
-          clearMarkers();
-          var marker = new google.maps.Marker({
-            map: $scope.map,
-            position: new google.maps.LatLng(item.py, item.px),
-            title: document.getElementById('linha').name
-          });
+  function onibus(id) {
+    var markers = [];
+    setInterval(function(){ 
+      for (var i = 0; i < markers.length; i++) {
+        markers[i].setMap(null);
+      }
+      markers = [];
+      Get_linha.query({code: id}, function(data){
+        angular.forEach(data.vs, function(value, key) {
+            var marker = new google.maps.Marker({
+                map: map,
+                position: {lat: value.py, lng: value.px},
+                icon: 'img/bus.png'
+            });
+            markers.push(marker);
         });
       });
-    }else{
-      console.log(Post_login.query());
-    }
+     }, 5000);
   }
 
-  document.getElementById('linha').addEventListener('change', carregarMarkers);
+  $scope.change = function (linhanum) {
+    carregarMarkers(linhanum);
+  };
+
 })
+/* 1 2023
+   2 2085
+*/
 
 .controller('EventosCtrl', function($scope, Eventos, $ionicLoading) {
 
