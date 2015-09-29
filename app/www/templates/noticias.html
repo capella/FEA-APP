@@ -1,24 +1,25 @@
 <ion-view view-title="Notícias">
-    <ion-content ng-init="showError=false" ng-show="listanoticias.length != 0" >
-    	<ion-refresher pulling-text="Deslize para atualizar..." on-refresh="doRefresh()"> </ion-refresher>
-    	<ion-list> <!-- é feio colocar uma lista dentro de outa, mas assim nao temos problas com o push -->
-    		<div class="list card" ng-repeat="noticia in listanoticias">	
-	            <div class="item">
-	                <h2 class="bold blue">{{::noticia.titulo}}</h2>
-	                <p><small>{{:: noticia.time | date:'dd/MM/yyyy'}}</small></p>
-	            </div>
-				<div class="item item-image" ng-hide="noticia.imgurl == null">
-					<img ng-src="{{noticia.imgurl}}">
-				</div>	    
-	            <div class="item item-body" style="padding-top: 0;">
-	                <div ng-bind-html="noticia.text"></div>
-	            </div>
-	        </div>
-	    </ion-list>
-        <ion-infinite-scroll ng-if="!returnedNothing" on-infinite="fetchMore()" distance="1%"></ion-infinite-scroll>
-    </ion-content>
-    <div ng-show="listanoticias.length == 0" class="no">
-    	<i class="icon ion-wifi" style="font-size:140px"></i>
-    	<p>Não achamos as notícias.</p>
-   	</div>
+   <ion-content ng-init="showError=false" ng-show="listanoticias.length != 0">
+      <ion-refresher pulling-text="Deslize para atualizar..." on-refresh="doRefresh()"> </ion-refresher>
+      <ion-list>
+         <!-- é feio colocar uma lista dentro de outa, mas assim nao temos problas com o push -->
+         <div class="list card" ng-repeat="noticia in listanoticias">
+            <div class="item">
+               <h2 class="bold blue">{{::noticia.titulo}}</h2>
+               <p><small>{{:: noticia.time | date:'dd/MM/yyyy'}}</small></p>
+            </div>
+            <div class="item item-image" ng-hide="noticia.imgurl == null">
+               <img ng-src="{{noticia.imgurl}}">
+            </div>
+            <div class="item item-body" style="padding-top: 0;">
+               <div ng-bind-html="noticia.text"></div>
+            </div>
+         </div>
+      </ion-list>
+      <ion-infinite-scroll ng-if="!returnedNothing" on-infinite="fetchMore()" distance="1%"></ion-infinite-scroll>
+   </ion-content>
+   <div ng-show="listanoticias.length == 0" class="no">
+      <i class="icon ion-wifi" style="font-size:140px"></i>
+      <p>Não achamos as notícias.</p>
+   </div>
 </ion-view>

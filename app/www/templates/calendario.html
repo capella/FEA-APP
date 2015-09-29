@@ -1,19 +1,19 @@
 <ion-view view-title="Eventos">
-  <ion-content>
-    <flex-calendar options="options" events="events"></flex-calendar>
-    <div class="list" ng-show="fulldate">
-    	<div class="item item-divider" style="text-align: center;">
-        	{{fulldate | date:'d'}} de {{fulldate | date:'MMMM' | uppercase | translate}} de {{fulldate | date:'yyyy'}}
-        </div>
-		<a class="item  item-icon-right" href="#/app/evento/{{evento.id}}/{{fulldate | date:'MM'}}/{{fulldate | date:'yyyy'}}" ng-repeat="evento in eventos_dia">
+   <ion-content>
+      <flex-calendar options="options" events="events"></flex-calendar>
+      <div class="list" ng-show="fulldate">
+         <div class="item item-divider" style="text-align: center;">
+            {{fulldate | date:'d'}} de {{fulldate | date:'MMMM' | uppercase | translate}} de {{fulldate | date:'yyyy'}}
+         </div>
+         <a class="item  item-icon-right" href="#/app/evento/{{evento.id}}/{{fulldate | date:'MM'}}/{{fulldate | date:'yyyy'}}" ng-repeat="evento in eventos_dia">
 			{{evento.title}}
 			<br>
 			<small>{{evento.date | date:'HH:mm'}}</small>
 			<i class="icon ion-chevron-right icon-accessory"></i>
 		</a>
-		<div class="item" ng-show="eventos_dia.length == 0">
-			<p>Não há eventos marcados para esta data.</p>
-		</div>
-    </div>
-  </ion-content>
+         <div class="item" ng-show="eventos_dia.length == 0">
+            <p>Não há eventos marcados para esta data.</p>
+         </div>
+      </div>
+   </ion-content>
 </ion-view>

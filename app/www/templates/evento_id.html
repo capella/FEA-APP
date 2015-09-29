@@ -1,27 +1,27 @@
 <ion-view view-title="Evento">
-  <ion-content lazy-scroll>
+   <ion-content lazy-scroll>
 
-  <div class="item">
-    <h2>{{evento.title}}</h2>
-    <p>{{evento.date | date:'dd/MM/yyyy - HH:mm'}}</p>
-  </div>
+      <div class="item">
+         <h2>{{evento.title}}</h2>
+         <p>{{evento.date | date:'dd/MM/yyyy - HH:mm'}}</p>
+      </div>
 
-  <div class="item item-body">
-    <p class="nomargin" style="text-align: justify;">
-      {{evento.text}}
-    </p>
-  </div>
+      <div class="item item-body">
+         <p class="nomargin" style="text-align: justify;">
+            {{evento.text}}
+         </p>
+      </div>
 
-  <div class="item" ng-if="evento.endereco">
-        <b>Local: </b>{{evento.endereco}}
-  </div>
-<!--
+      <div class="item" ng-if="evento.endereco">
+         <b>Local: </b>{{evento.endereco}}
+      </div>
+      <!--
   <div class="item" style="padding:0;" ng-if="evento.lat">
         <div style="width:100%;height:400px;" id="map_canvas_z"></div>
   </div>
 -->
-<div id="map" data-tap-disabled="true" style="width:100%;height:400px;"></div>
+      <div id="map" data-tap-disabled="true" style="width:100%;height:400px;"></div>
 
 
-  </ion-content>
+   </ion-content>
 </ion-view>
