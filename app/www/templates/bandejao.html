@@ -2,7 +2,7 @@
    <ion-tabs class="tabs-icon-top tabs-positive">
       <ion-tab title="Central/Física" icon="ion-pizza">
          <ion-nav-bar class="bar-positive"></ion-nav-bar>
-         <ion-content ng-show="listanoticias.length != 0">
+         <ion-content ng-show="cardapio.length != 0">
             <ion-refresher pulling-text="Deslize para atualizar..." on-refresh="doRefresh()"> </ion-refresher>
             <div ng-repeat="dia in cardapio['central']">
                <div class="item item-divider item-energized" style="text-align: center;" ng-class="{'bold': dia.day==hoje}" ng-if="dia">
@@ -28,14 +28,14 @@
                </div>
             </div>
          </ion-content>
-         <div ng-show="listanoticias.length == 0" class="no">
+         <div ng-show="cardapio.length == 0" class="no">
             <i class="icon ion-wifi" style="font-size:140px"></i>
             <p>Não achamos o que será servido.</p>
          </div>
       </ion-tab>
       <ion-tab title="Química" icon-off="ion-ios-flask-outline" icon-on="ion-ios-flask">
          <ion-nav-bar class="bar-positive"></ion-nav-bar>
-         <ion-content ng-show="listanoticias.length != 0">
+         <ion-content ng-show="cardapio.length != 0">
             <ion-refresher pulling-text="Deslize para atualizar..." on-refresh="doRefresh()"> </ion-refresher>
             <div ng-repeat="dia in cardapio['quimica']">
                <div class="item item-divider item-energized" style="text-align: center;" ng-class="{'bold': dia.day==hoje}" ng-if="dia">
@@ -61,7 +61,7 @@
                </div>
             </div>
          </ion-content>
-         <div ng-show="listanoticias.length == 0" class="no">
+         <div ng-show="cardapio.length == 0" class="no">
             <i class="icon ion-wifi" style="font-size:140px"></i>
             <p>Não achamos o que será servido.</p>
          </div>

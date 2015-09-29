@@ -48,32 +48,34 @@ angular.module('app_fea.controllers', [])
          Post_login.save({}, function(b) {
             onibus(2023);
             onibus(2085);
+            setInterval(function() {
+               onibus(2023);
+               onibus(2085);
+            }, 5000);
          });
       }
 
       function onibus(id) {
          var markers = [];
-         setInterval(function() {
-            for (var i = 0; i < markers.length; i++) {
-               markers[i].setMap(null);
-            }
-            markers = [];
-            Get_linha.query({
-               code: id
-            }, function(data) {
-               angular.forEach(data.vs, function(value, key) {
-                  var marker = new google.maps.Marker({
-                     map: map,
-                     position: {
-                        lat: value.py,
-                        lng: value.px
-                     },
-                     icon: 'img/bus.png'
-                  });
-                  markers.push(marker);
+         for (var i = 0; i < markers.length; i++) {
+            markers[i].setMap(null);
+         }
+         markers = [];
+         Get_linha.query({
+            code: id
+         }, function(data) {
+            angular.forEach(data.vs, function(value, key) {
+               var marker = new google.maps.Marker({
+                  map: map,
+                  position: {
+                     lat: value.py,
+                     lng: value.px
+                  },
+                  icon: 'img/bus.png'
                });
+               markers.push(marker);
             });
-         }, 5000);
+         });
       }
 
       $scope.change = function(linhanum) {
