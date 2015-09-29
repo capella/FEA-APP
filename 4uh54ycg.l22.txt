@@ -1,0 +1,41 @@
+﻿Merge remote-tracking branch 'origin/master'
+
+Conflicts:
+	app/www/templates/circular.html
+#
+# It looks like you may be committing a merge.
+# If this is not correct, please remove the file
+#	.git/MERGE_HEAD
+# and try again.
+
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+# Your branch and 'origin/master' have diverged,
+# and have 1 and 2 different commits each, respectively.
+#   (use "git pull" to merge the remote branch into yours)
+#
+# All conflicts fixed but you are still merging.
+#
+# Changes to be committed:
+#	modified:   app/config.xml
+#	modified:   app/gulpfile.js
+#	modified:   app/package.json
+#	new file:   app/www/img/bus.png
+#	modified:   app/www/index.html
+#	modified:   app/www/js/app.js
+#	modified:   app/www/js/controllers.js
+#	modified:   app/www/js/services.js
+#	modified:   app/www/templates/bandejao.html
+#	modified:   app/www/templates/browse.html
+#	modified:   app/www/templates/calendario.html
+#	modified:   app/www/templates/circular.html
+#	modified:   app/www/templates/evento_id.html
+#	modified:   app/www/templates/idiomas_login.html
+#	modified:   app/www/templates/login.html
+#	modified:   app/www/templates/menu.html
+#	modified:   app/www/templates/noticias.html
+#	modified:   app/www/templates/rotas.html
+#
+

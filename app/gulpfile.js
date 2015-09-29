@@ -7,6 +7,7 @@ var minifyCss = require('gulp-minify-css');
 var rename = require('gulp-rename');
 var sh = require('shelljs');
 var wiredep = require('wiredep').stream;
+var prettify = require('gulp-jsbeautifier');
 
 var paths = {
   sass: ['./scss/**/*.scss']
@@ -58,3 +59,16 @@ gulp.task('bower', function () {
     }))
     .pipe(gulp.dest('./www'));
 });
+
+gulp.task('prettify', function() {
+  gulp.src('./www/js/*.js')
+    .pipe(prettify({indent_size: 3}))
+    .pipe(gulp.dest('./www/js/'));
+  gulp.src('./www/templates/*.html')
+    .pipe(prettify({indent_size: 3}))
+    .pipe(gulp.dest('./www/templates/'));
+  gulp.src('./www/index.html')
+    .pipe(prettify({indent_size: 3}))
+    .pipe(gulp.dest('./www/'));
+});
+
