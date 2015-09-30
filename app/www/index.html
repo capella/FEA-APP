@@ -6,7 +6,7 @@
    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
 
    <title></title>
-   <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline';script-src 'self' 'unsafe-inline' 'unsafe-eval' *.googleapis.com https://maps.gstatic.com http://api.olhovivo.sptrans.com.br; object-src 'self'; font-src 'self'  'unsafe-inline' 'unsafe-eval' https://fonts.googleapis.com/*; ">
+   <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline';script-src 'self' 'unsafe-inline' 'unsafe-eval' *.googleapis.com https://maps.gstatic.com http://api.olhovivo.sptrans.com.br https://maps.googleapis.com/ https://maps.gstatic.com/ https://mts0.googleapis.com/ https://mts1.googleapis.com/; object-src 'self'; font-src 'self'  'unsafe-inline' 'unsafe-eval' https://fonts.googleapis.com/*; ">
    <link rel="stylesheet" href="css/ionic.app.min.css" />
    <link rel="stylesheet" href="lib/flex-calendar/dist/flex-calendar.css" />
    <link href="css/style.css" rel="stylesheet">
@@ -14,7 +14,8 @@
    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
     <link href="css/ionic.app.css" rel="stylesheet">
     -->
-
+   <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?&sensor=false"></script>
+   <!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAlgGWbnjwh7zivXzxeQ-g0MlXd_BRd-ow"></script>-->
    <!-- bower:js -->
    <script src="lib/angular/angular.js"></script>
    <script src="lib/angular-resource/angular-resource.js"></script>
@@ -31,7 +32,7 @@
 
    <!--<script src="lib/maps/index"></script>-->
 
-   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAlgGWbnjwh7zivXzxeQ-g0MlXd_BRd-ow"></script>
+   
 
    <!-- cordova script (this will be a 404 during development) -->
    <script src="cordova.js"></script>

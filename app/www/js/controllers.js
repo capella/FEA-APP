@@ -213,7 +213,7 @@ angular.module('app_fea.controllers', [])
       mapTypeId: google.maps.MapTypeId.ROADMAP,
       disableDefaultUI: true
    };
-   map = new google.maps.Map(document.getElementById("mapr"), mapOptions);
+   map = new google.maps.Map(document.getElementById("map"), mapOptions);
    directionsDisplay.setMap(map);
    directionsDisplay.setPanel(document.getElementById("directionsPanel"));
 
