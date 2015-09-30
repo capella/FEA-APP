@@ -36,7 +36,7 @@ angular.module('app_fea.controllers', [])
             disableDefaultUI: true
          };
 
-         var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+         var map = new google.maps.Map(document.getElementById("mapc"), mapOptions);
          $scope.map = map;
          carregarMarkers(2023);
 
@@ -213,7 +213,7 @@ angular.module('app_fea.controllers', [])
       mapTypeId: google.maps.MapTypeId.ROADMAP,
       disableDefaultUI: true
    };
-   map = new google.maps.Map(document.getElementById("map"), mapOptions);
+   map = new google.maps.Map(document.getElementById("mapr"), mapOptions);
    directionsDisplay.setMap(map);
    directionsDisplay.setPanel(document.getElementById("directionsPanel"));
 
