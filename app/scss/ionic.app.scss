@@ -70,3 +70,30 @@ ion-content {
   color: #222;
   font-weight: 500
 }
+
+.item-buttoned{
+  color: #203a5e;
+  text-align: center;
+  font-weight: bold;
+  margin-top: 30px;
+}
+
+.card.map-card{
+  position: absolute;
+  top: 0px;
+  right: 0px;
+}
+
+.card.map-card .item{
+  padding: 10px;
+  font-size: 20px;
+}
+
+.card.map-card .item span{
+  color: #203a5e;
+  font-size: 32px;
+}
+
+.adp-warnbox{
+  display: none !important;
+}

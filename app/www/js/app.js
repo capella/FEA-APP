@@ -132,6 +132,16 @@ angular.module('app_fea', ['ionic', 'app_fea.controllers', 'app_fea.services', '
       }
    })
 
+   .state('app.mapa', {
+      url: '/mapa',
+      views: {
+         'menuContent': {
+            templateUrl: 'templates/mapa.html',
+            controller: 'MapaCtrl'
+         }
+      }
+   })
+
    $urlRouterProvider.otherwise('/app/noticias');
 })
 
