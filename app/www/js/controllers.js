@@ -28,6 +28,8 @@ angular.module('app_fea.controllers', [])
 
 .controller('CircularCtrl', function($scope, Post_login, Get_linha) {
       var aut = false;
+      var markers = [];
+      var map;
       try {
          var mapOptions = {
             center: new google.maps.LatLng(-23.5588, -46.7291),
@@ -36,9 +38,15 @@ angular.module('app_fea.controllers', [])
             disableDefaultUI: true
          };
 
-         var map = new google.maps.Map(document.getElementById("mapc"), mapOptions);
+         map = new google.maps.Map(document.getElementById("mapc"), mapOptions);
          $scope.map = map;
-         carregarMarkers(2023);
+         carregarMarkers();
+
+         new google.maps.KmlLayer({
+             url: 'http://fea.capella.pro/assets/circulares.kml',
+             map: map,
+             preserveViewport: true
+         });
 
       } catch (err) {
          console.log(err);
@@ -56,7 +64,6 @@ angular.module('app_fea.controllers', [])
       }
 
       function onibus(id) {
-         var markers = [];
          for (var i = 0; i < markers.length; i++) {
             markers[i].setMap(null);
          }
