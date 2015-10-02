@@ -171,6 +171,7 @@ angular.module('app_fea.controllers', [])
             $scope.listanoticias = [];
          page++;
          data.forEach(function(item) {
+            item.time = moment(item.time).format("DD/MM/YYYY");
             $scope.listanoticias.push(item);
          });
          $ionicLoading.hide();

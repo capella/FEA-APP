@@ -2,13 +2,13 @@
    <ion-tabs class="tabs-icon-top tabs-positive">
       <ion-tab title="Central/Física" icon="ion-pizza">
          <ion-nav-bar class="bar-positive"></ion-nav-bar>
-         <ion-content ng-show="cardapio.length != 0">
+         <ion-content ion-sticky ng-show="cardapio.length != 0">
             <ion-refresher pulling-text="Deslize para atualizar..." on-refresh="doRefresh()"> </ion-refresher>
             <div ng-repeat="dia in cardapio['central']">
                <div class="item item-divider item-energized" style="text-align: center;" ng-class="{'bold': dia.day==hoje}" ng-if="dia">
                   {{dia.dia}}
                </div>
-               <div class="item item-divider" ng-if="dia.lunch">
+               <div class="item item-fake-divider" ng-if="dia.lunch">
                   <small>Almoço</small>
                </div>
                <div class="item" ng-repeat="prato in dia.lunch.comidas">
@@ -17,7 +17,7 @@
                <div class="item" ng-if="dia.lunch">
                   <span class="bold">Valor calórico: <span class="positive">{{dia.lunch.kcal}}</span> kcal</span>
                </div>
-               <div class="item item-divider" ng-if="dia.dinner">
+               <div class="item item-fake-divider" ng-if="dia.dinner">
                   <small>Jantar</small>
                </div>
                <div class="item" ng-repeat="prato in dia.dinner.comidas">

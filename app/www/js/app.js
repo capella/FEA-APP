@@ -4,7 +4,7 @@
 // 'app_fea' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'app_fea.controllers' is found in controllers.js
-angular.module('app_fea', ['ionic', 'app_fea.controllers', 'app_fea.services', 'ngResource', 'pascalprecht.translate', 'flexcalendar', 'ngCordova'])
+angular.module('app_fea', ['ionic', 'app_fea.controllers', 'app_fea.services', 'ngResource', 'pascalprecht.translate', 'flexcalendar', 'ngCordova', 'ion-sticky'])
 
 .run(function($ionicPlatform, $cordovaPush, User_server, $cordovaDevice, $rootScope) {
    $ionicPlatform.ready(function() {

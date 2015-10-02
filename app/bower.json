@@ -10,6 +10,8 @@
     "flex-calendar": "*",
     "ionic": "~1.0.1",
     "maps": "https://maps.googleapis.com/maps/api/js?key=AIzaSyAlgGWbnjwh7zivXzxeQ-g0MlXd_BRd-ow",
-    "ngCordova": "~0.1.17-alpha"
+    "ngCordova": "~0.1.17-alpha",
+    "momentjs": "~2.10.6",
+    "ion-sticky": "~1.0.3"
   }
 }
