@@ -77,4 +77,10 @@ angular.module('app_fea.services', [])
    return functions;
 })
 
-;
+.value("Config_rotas", function(){
+   return {
+      start: "",
+      end: "",
+      mode: ""
+   };
+});

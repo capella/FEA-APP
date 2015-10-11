@@ -1,0 +1,28 @@
+<ion-view view-title="Mapa">
+   <ion-content has-bouncing="false" scroll="false">
+      <div id="map" style="width: 100%; height:100%"></div>
+      <div class="card map-card" style="position: absolute; top: 0px;">
+         <div class="item" ng-click="openModal()">
+            <span class="ion-navicon"></span>
+         </div>
+      </div>
+      <div id="directionsPanel" ng-hide="'true'"></div>
+   </ion-content>
+</ion-view>
+
+<script id="modal-rota.html" type="text/ng-template">
+  <ion-modal-view>
+    <ion-header-bar class="bar-positive bar-main">
+      <h1 class="title">Detalhes</h1>
+      <div class="buttons">
+         <button class="button button-clear" ng-click="closeModal()">
+            <span class="ion-android-close"></span>
+         </button>
+      </div>
+    </ion-header-bar>
+    <ion-content>
+      <div style="width:100%;height 100%" ng-bind-html="directions">
+      </div>
+    </ion-content>
+  </ion-modal-view>
+</script>

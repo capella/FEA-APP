@@ -209,7 +209,41 @@ angular.module('app_fea.controllers', [])
 
 })
 
-.controller('RotasCtrl', function($scope) {
+.controller('RotasCtrl', function($scope, $state, Config_rotas) {
+
+   $scope.canShowAlert = false;
+   $scope.goToRoute = function(){
+         var origin = document.getElementById('start').value;
+         var destination = document.getElementById('end').value;
+         var travelMode = document.getElementById('mode').value;
+         Config_rotas.start = origin;
+         Config_rotas.end = destination;
+         Config_rotas.mode = travelMode;
+         $state.go("app.mapa");
+   };
+})
+
+.controller("MapaCtrl", function($scope, $ionicModal, Config_rotas){
+
+   $scope.directions = "";
+   $ionicModal.fromTemplateUrl('modal-rota.html', {
+      scope: $scope,
+      animation: 'slide-in-up'
+   }).then(function(modal) {
+      $scope.modal = modal;
+   });
+   $scope.openModal = function() {
+      $scope.directions = document.getElementById("directionsPanel").innerHTML;
+      $scope.modal.show();
+   };
+   $scope.closeModal = function() {
+      $scope.modal.hide();
+   };
+   //Cleanup the modal when we're done with it!
+   $scope.$on('$destroy', function() {
+      $scope.modal.remove();
+   });
+
    var directionsDisplay;
    var directionsService = new google.maps.DirectionsService();
    var map;
@@ -224,24 +258,18 @@ angular.module('app_fea.controllers', [])
    map = new google.maps.Map(document.getElementById("map"), mapOptions);
    directionsDisplay.setMap(map);
    directionsDisplay.setPanel(document.getElementById("directionsPanel"));
-
-   var onChangeHandler = function() {
-      calculateAndDisplayRoute(directionsService, directionsDisplay);
-   };
-   document.getElementById('start').addEventListener('change', onChangeHandler);
-   document.getElementById('end').addEventListener('change', onChangeHandler);
-   document.getElementById('mode').addEventListener('change', onChangeHandler);
+   calculateAndDisplayRoute(directionsService, directionsDisplay);
 
    function calculateAndDisplayRoute(directionsService, directionsDisplay) {
       directionsService.route({
-         origin: document.getElementById('start').value,
-         destination: document.getElementById('end').value,
-         travelMode: document.getElementById('mode').value,
+         origin: Config_rotas.start,
+         destination: Config_rotas.end,
+         travelMode: Config_rotas.mode,
       }, function(response, status) {
          if (status === google.maps.DirectionsStatus.OK) {
             directionsDisplay.setDirections(response);
          } else {
-            window.alert('Directions request failed due to ' + status);
+            alert('Ocorreu um erro ao exibir o mapa: ' + status);
          }
       });
    }
