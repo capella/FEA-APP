@@ -7,10 +7,10 @@
   <author email="gabriel@capella.pro">
       RC, Capella e Zetum
     </author>
-  <content src="index.html"/>
+  <content src="http://192.168.1.37:8100" original-src="index.html"/>
   <access origin="*"/>
-  <allow-navigation href="*" />
-  <allow-intent href="*" />
+  <allow-navigation href="*"/>
+  <allow-intent href="*"/>
   <preference name="webviewbounce" value="false"/>
   <preference name="UIWebViewBounce" value="false"/>
   <preference name="DisallowOverscroll" value="true"/>
