@@ -97,3 +97,8 @@ ion-content {
 .adp-warnbox{
   display: none !important;
 }
+
+.adp {
+  @extend .card;
+  padding: 7px;
+}

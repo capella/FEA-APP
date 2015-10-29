@@ -15,16 +15,18 @@ angular.module('app_fea', ['ionic', 'app_fea.controllers', 'app_fea.services', '
             "android": {
                "senderID": "950391589235"
             },
-            "ios": {},
+            "ios": {"alert": "true", "badge": "true", "sound": "true"},
             "windows": {}
          });
 
          push.on('registration', function(data) {
+            console.log(data);
             var send_data = {
                uuid: $cordovaDevice.getUUID(),
                sendcode: data.registrationId,
                system: $cordovaDevice.getPlatform()
             };
+            alert(1);
             User_server.save(send_data, function(data2) {
                console.log(JSON.stringify(data2));
             }, function(data2) {
@@ -35,6 +37,9 @@ angular.module('app_fea', ['ionic', 'app_fea.controllers', 'app_fea.services', '
          push.on('notification', function(data) {
             console.log("notification event");
             window.location.href = "#" + data.additionalData.additionalData;
+            push.finish(function() {
+                console.log("processing of push data is finished");
+            });
          });
       });
 
