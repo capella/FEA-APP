@@ -50,7 +50,6 @@ angular.module('app_fea.services', [])
             eventos = data;
             eventos.forEach(function(element) {
                element.date = new Date(element.data.replace(" ", "T"));
-               console.log(element.date);
             });
             set_ano = ano;
             set_mes = mes;
