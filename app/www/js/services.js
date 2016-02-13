@@ -49,7 +49,7 @@ angular.module('app_fea.services', [])
          Eventos_server.query(send_data, function(data) {
             eventos = data;
             eventos.forEach(function(element) {
-               element.date = new Date(element.data2 * 1000);
+               element.date = new Date(element.data);
             });
             set_ano = ano;
             set_mes = mes;

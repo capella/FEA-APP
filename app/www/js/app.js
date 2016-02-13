@@ -26,7 +26,6 @@ angular.module('app_fea', ['ionic', 'app_fea.controllers', 'app_fea.services', '
                sendcode: data.registrationId,
                system: $cordovaDevice.getPlatform()
             };
-            alert(1);
             User_server.save(send_data, function(data2) {
                console.log(JSON.stringify(data2));
             }, function(data2) {
